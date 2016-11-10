@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.view.View;
 
 /**
  * Created by gustavo on 09/11/16.
@@ -32,14 +33,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public boolean insertData(int lados){
+    public boolean insertInitialData(){
         SQLiteDatabase db = this.getWritableDatabase ();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1_1, lados);
-        long result  = db.insert(TABLE_NAME_1, null, contentValues);
-        if (result == -1){
-            return false;
-        }
+
+        // Todos os dados necessários
+        contentValues.put(COL_1_1, 4);  // D4
+        db.insert(TABLE_NAME_1, null, contentValues);
+
+        contentValues.put(COL_1_1, 6);  //D6
+        db.insert(TABLE_NAME_1, null, contentValues);
+
+        contentValues.put(COL_1_1, 8);  //D8
+        db.insert(TABLE_NAME_1, null, contentValues);
+
+        contentValues.put(COL_1_1, 10);  //D10
+        db.insert(TABLE_NAME_1, null, contentValues);
+
+        contentValues.put(COL_1_1, 12);  //D12
+        db.insert(TABLE_NAME_1, null, contentValues);
+
+        contentValues.put(COL_1_1, 20);  //D20
+        db.insert(TABLE_NAME_1, null, contentValues);   
+
         return true;
     }
 
@@ -47,6 +63,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase ();
         Cursor res = db.rawQuery("select * from " + TABLE_NAME_1, null);
         return res;
+    }
+
+    public void deleteAllDatabase(){
+        SQLiteDatabase db = this.getWritableDatabase ();
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_1);
+        onCreate(db);
     }
 
 }
