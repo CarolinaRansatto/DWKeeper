@@ -11,18 +11,6 @@
     tools:context="com.keeper.company.dwkeeper.Dados">
 
     <Button
-        android:text="rolar d4"
-        android:tag="4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="60dp"
-        android:id="@+id/botaoDado4"
-        android:onClick="rolaDado"/>
-
-    <Button
         android:text="rolar d6"
         android:tag="6"
         android:layout_width="wrap_content"
@@ -82,4 +70,32 @@
         android:layout_alignLeft="@+id/botaoDado6"
         android:layout_alignStart="@+id/botaoDado6"
         android:onClick="rolaDado"/>
+
+    <Button
+        android:text="rolar d4"
+        android:tag="4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:id="@+id/botaoDado4"
+        android:onClick="rolaDado"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="LovelyTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:fontFamily="sans-serif-medium"
+        android:textAlignment="center"
+        android:textStyle="normal|bold"
+        android:textSize="40sp"
+        android:typeface="monospace"
+        android:textAllCaps="false"
+        android:layout_marginTop="53dp"
+        android:layout_below="@+id/botaoDado12"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
