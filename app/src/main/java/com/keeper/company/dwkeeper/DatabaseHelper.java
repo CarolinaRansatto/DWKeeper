@@ -54,12 +54,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_NAME_1, null, contentValues);
 
         contentValues.put(COL_1_1, 20);  //D20
-        db.insert(TABLE_NAME_1, null, contentValues);   
+        db.insert(TABLE_NAME_1, null, contentValues);
 
         return true;
     }
 
     public Cursor viewAllData(){
+        // Somente os dados vão funcionar por enquanto
         SQLiteDatabase db = this.getWritableDatabase ();
         Cursor res = db.rawQuery("select * from " + TABLE_NAME_1, null);
         return res;
