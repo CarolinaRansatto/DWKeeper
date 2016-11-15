@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     public void addData(View v){
         if (bd.insertInitialData()){
             Toast.makeText(MainActivity.this, "Dado inserido com sucesso!", Toast.LENGTH_LONG).show();

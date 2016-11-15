@@ -1,0 +1,27 @@
+package com.keeper.company.dwkeeper;
+
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
+import java.util.Random;
+
+public class Dados extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_dados);
+    }
+
+    // método para simular o rolar de um dado qualquer
+    public void rolaDado(View v){
+        int lados = Integer.parseInt(v.getTag().toString());
+        Random rand = new Random();
+        int res =  rand.nextInt(lados) + 1; // acrescenta 1 pq começa no zero
+        Toast.makeText(Dados.this, "" + res , Toast.LENGTH_SHORT).show();
+    }
+
+}

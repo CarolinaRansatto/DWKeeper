@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_dados"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.keeper.company.dwkeeper.Dados">
+
+    <Button
+        android:text="rolar d4"
+        android:tag="4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="60dp"
+        android:id="@+id/botaoDado4"
+        android:onClick="rolaDado"/>
+
+    <Button
+        android:text="rolar d6"
+        android:tag="6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/botaoDado4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="23dp"
+        android:layout_marginEnd="23dp"
+        android:id="@+id/botaoDado6"
+        android:onClick="rolaDado"/>
+
+    <Button
+        android:text="rolar d8"
+        android:tag="8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/botaoDado4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="76dp"
+        android:id="@+id/botaoDado8"
+        android:onClick="rolaDado"/>
+
+    <Button
+        android:text="rolard12"
+        android:tag="12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/botaoDado8"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="65dp"
+        android:id="@+id/botaoDado12"
+        android:onClick="rolaDado"/>
+
+    <Button
+        android:text="rolar d20"
+        android:tag="20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/botaoDado20"
+        android:layout_alignBaseline="@+id/botaoDado12"
+        android:layout_alignBottom="@+id/botaoDado12"
+        android:layout_alignLeft="@+id/botaoDado10"
+        android:layout_alignStart="@+id/botaoDado10"
+        android:onClick="rolaDado"/>
+
+    <Button
+        android:text="rolar d10"
+        android:tag="10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/botaoDado10"
+        android:layout_alignBaseline="@+id/botaoDado8"
+        android:layout_alignBottom="@+id/botaoDado8"
+        android:layout_alignLeft="@+id/botaoDado6"
+        android:layout_alignStart="@+id/botaoDado6"
+        android:onClick="rolaDado"/>
+</RelativeLayout>
