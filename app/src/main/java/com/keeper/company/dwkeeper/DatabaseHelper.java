@@ -13,9 +13,14 @@ import android.view.View;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "keeper.db";
-    public static final String TABLE_NAME_1 = "dado";
-    public static final String COL_1_1 = "lados";
+    public static final String DATABASE_NAME = "KEEPER.db";
+    public static final String TABLE_NAME_1 = "DADO";
+    public static final String TABLE_NAME_2 = "MOVIMENTO";
+    public static final String COL_1_1 = "LADOS";
+    public static final String COL_1_2 = "MOV_ID";
+    public static final String COL_2_2 = "NOME";
+    public static final String COL_3_2 = "DESCRICAO";
+    public static final String COL_4_2 = "CLASSE_FK";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -24,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME_1 +
-                " (" + COL_1_1 + " INTEGER PRIMARY KEY);");
+                " (" + COL_1_1 + " INTEGER PRIMARY KEY); CREATE TABLE " + TABLE_NAME_2 + " ( " + COL_1_2 + " INTERGER PRIMARY KEY AUTO_INCREMENT, " + COL_2_2 + " VARCHAR(20) NOT NULL, " + COL_3_2 + " VARCHAR(255), " + COL_4_2 + " INTEGER NOT NULL);");
     }
 
     @Override
