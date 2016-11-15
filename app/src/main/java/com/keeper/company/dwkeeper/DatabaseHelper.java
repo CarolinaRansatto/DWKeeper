@@ -16,30 +16,52 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "KEEPER.db";
     public static final String TABLE_NAME_1 = "DADO";
     public static final String TABLE_NAME_2 = "MOVIMENTO";
-    public static final String TABLE_NAME_3 = "FICHA";
+    public static final String TABLE_NAME_3 = "CLASSE";
     public static final String TABLE_NAME_4 = "RAÇA";
+    public static final String TABLE_NAME_5 = "ALINHAMENTO";
+    public static final String TABLE_NAME_6 = "FICHA";
+    public static final String TABLE_NAME_7 = "PODE_SER_DE";
     public static final String COL_1_1 = "LADOS";
     public static final String COL_1_2 = "MOV_ID";
     public static final String COL_2_2 = "NOME";
     public static final String COL_3_2 = "DESCRICAO";
     public static final String COL_4_2 = "CLASSE_FK";
-    public static final String COL_1_3 = "FICHA_ID";
+    public static final String COL_1_3 = "CLASSE_ID";
+    public static final String COL_2_3 = "NOME";
     public static final String COL_1_4 = "RACA_ID";
-
+    public static final String COL_2_4 = "NOME";
+    public static final String COL_1_5 = "ALI_ID";
+    public static final String COL_1_6 = "FICHA_ID";
+    public static final String COL_1_7 = "CLASSE_FK";
+    public static final String COL_2_7 = "RACA_FK";
+    public static final String COL_3_7 = "BENEFICIO";
 
 
     public static final String QUERY_1 = "CREATE TABLE " + TABLE_NAME_1 +
-            " (" + COL_1_1 + " INTEGER PRIMARY KEY); ";
+            " (" + COL_1_1 + " INTEGER PRIMARY KEY AUTO_INCREMENT); ";
     public static final String QUERY_2 = "CREATE TABLE " + TABLE_NAME_3 +
-            " (" + COL_1_3 + "INTEGER PRIMARY KEY AUTO_INCREMENT);";
+            " (" + COL_1_3 + "INTEGER PRIMARY KEY AUTO_INCREMENT," +
+             COL_2_3 + "VARCHAR(50));";
     public static final String QUERY_3 = "CREATE TABLE " + TABLE_NAME_2 + " ( "
             + COL_1_2 + " INTERGER PRIMARY KEY AUTO_INCREMENT, "
             + COL_2_2 + " VARCHAR(20) NOT NULL, "
             + COL_3_2 + " VARCHAR(255), "
             + COL_4_2 + " INTEGER NOT NULL," +
-            " FOREIGN KEY (" + COL_4_2 + ") REFERENCES " + TABLE_NAME_3 + " (ficha_id)); ";
+            " FOREIGN KEY (" + COL_4_2 + ") REFERENCES " + TABLE_NAME_3 + " (ficha_id)" +
+            "ON UPDATE CASCADE ON DELETE CASCADE); ";
     public static final String QUERY_4 = "CREATE TABLE " + TABLE_NAME_4 +
-            " (" + COL_1_4 + "INTEGER PRIMARY KEY); ";
+            " (" + COL_1_4 + "INTEGER PRIMARY KEY AUTO_INCREMENT," +
+             COL_2_4 + "VARCHAR(50)); ";
+    public static final String QUERY_5 = "CREATE TABLE " + TABLE_NAME_5 +
+            " (" + COL_1_5 + "INTEGER PRIMARY KEY ATUO_INCREMENT); ";
+    public static final String QUERY_6 = "CREATE TABLE " + TABLE_NAME_6 +
+            " (" + COL_1_6 + "INTEGER PRIMARY KEY AUTO_INCREMENT); ";
+    public static final String QUERY_7 = "CREATE TABLE " + TABLE_NAME_7 +
+            " (" + COL_1_7 + "INTEGER," +
+            COL_2_7 + "INTEGER," +
+            COL_3_7 + "VARCHAR(255)" +
+            "FOREIGN KEY (" + COL_1_7 + ") REFERENCES " + TABLE_NAME_4 + " " +
+            "ON UPDATE CASCADE ON DELETE CASCADE); ";
 
 
     public DatabaseHelper(Context context) {
