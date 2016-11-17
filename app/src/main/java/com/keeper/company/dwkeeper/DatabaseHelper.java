@@ -21,7 +21,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME_5 = "ALINHAMENTO";
     public static final String TABLE_NAME_6 = "FICHA";
     public static final String TABLE_NAME_7 = "PODE_SER_DE";
+    public static final String TABLE_NAME_8 = "POSSUI_MOVIMENTOS";
     public static final String COL_1_1 = "LADOS";
+    public static final String COL_2_1 = "NOME_TESTE";
     public static final String COL_1_2 = "MOV_ID";
     public static final String COL_2_2 = "NOME";
     public static final String COL_3_2 = "DESCRICAO";
@@ -42,13 +44,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_9_6 = "ARMADURA"; //SMALLINT
     public static final String COL_10_6 = "PV_ATUAL"; //SMALLINT
     public static final String COL_11_6 = "PV_TOTAL"; //SMALLINT
+    public static final String COL_12_6 = "ALI_FK";
     public static final String COL_1_7 = "CLASSE_FK";
     public static final String COL_2_7 = "RAÇA_FK";
     public static final String COL_3_7 = "BENEFICIO";
+    public static final String COL_1_8 = "FICHA_FK";
+    public static final String COL_2_8 = "MOVI_FK";
 
     // dados
     public static final String QUERY_1 = "CREATE TABLE " + TABLE_NAME_1 +
-            " (" + COL_1_1 + " INTEGER PRIMARY KEY AUTO_INCREMENT); "; //pk
+            " (" + COL_1_1 + " INTEGER PRIMARY KEY, " +
+            COL_2_1 + " INTEGER ); "; //pk
     //classe
     public static final String QUERY_2 = "CREATE TABLE " + TABLE_NAME_3 +
             " (" + COL_1_3 + "INTEGER PRIMARY KEY AUTO_INCREMENT," +// pk
@@ -70,7 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             " (" + COL_1_5 + " INTEGER PRIMARY KEY ATUO_INCREMENT); "; //pk
     //ficha
     public static final String QUERY_6 = "CREATE TABLE " + TABLE_NAME_6 +
-            " (" + COL_1_6 + " INTEGER PRIMARY KEY AUTO_INCREMENT, " +
+            " (" + COL_1_6 + " INTEGER PRIMARY KEY, " +
             COL_2_6 +" INTEGER, " + //classe fk
             COL_3_6 +" INTEGER, " + // raça fk
             COL_4_6 + " VARCHAR(20), " + // atributos( EX: 10/2/8/3/8/6/5/3/2/9)
@@ -81,19 +87,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COL_9_6 + " SMALLINT, " + // ARMADURA
             COL_10_6 + " SMALLINT, " + //PV ATUAL
             COL_11_6 + " SMALLINT, " + //PV TOTAL
+            COL_12_6 + " INTEGER, " + //ALINHAMENTO FK
             "FOREING KEY (" +COL_2_6 + ") REFERENCES " + TABLE_NAME_3 + " (" + COL_1_3 + ")" +
-            " ON DELETE SET NULL ON UPDATE CASCADE," +
+            " ON DELETE SET NULL ON UPDATE CASCADE, " +
             "FOREING KEY (" +COL_3_6 + ") REFERENCES " + TABLE_NAME_4 + " (" + COL_1_4 + ")" +
+            " ON DELETE SET NULL ON UPDATE CASCADE, " +
+            "FOREING KEY (" +COL_8_6 + ") REFERENCES " + TABLE_NAME_1 + " (" + COL_1_1 + ")" +
+            " ON DELETE SET NULL ON UPDATE CASCADE, " +
+            "FOREING KEY (" +COL_12_6 + ") REFERENCES " + TABLE_NAME_5 + " (" + COL_1_5 + ")" +
             " ON DELETE SET NULL ON UPDATE CASCADE ); ";
     // pode_ser_de
     public static final String QUERY_7 = "CREATE TABLE " + TABLE_NAME_7 +
-            " (" + COL_1_7 + " INTEGER," + //classe fk
-            COL_2_7 + " INTEGER," + //raça fk
-            COL_3_7 + " VARCHAR(255)" + //beneficio
-            "FOREIGN KEY (" + COL_1_7 + ") REFERENCES " + TABLE_NAME_3 + " " +
+            " (" + COL_1_7 + " INTEGER, " + //classe fk
+            COL_2_7 + " INTEGER, " + //raça fk
+            COL_3_7 + " VARCHAR(255), " + //beneficio
+            "FOREIGN KEY (" + COL_1_7 + ") REFERENCES " + TABLE_NAME_3 + "( " + COL_1_3 + ") " +
             " ON UPDATE CASCADE ON DELETE CASCADE," +
-            "FOREIGN KEY (" + COL_2_7 + ") REFERENCES " + TABLE_NAME_4 + " " +
+            "FOREIGN KEY (" + COL_2_7 + ") REFERENCES " + TABLE_NAME_4 + "( " + COL_1_4 + ") " +
             " ON UPDATE CASCADE ON DELETE CASCADE); ";
+
+    // possui_movimentos
+    public static final String QUERY_8 = "CREATE TABLE " + TABLE_NAME_8 +
+            " (" + COL_1_8 + " INTEGER, " + // ficha_fk
+            COL_2_8 + " INTEGER, " + // movimento fk
+            "FOREIGN KEY (" + COL_1_8 + ") REFERENCES " + TABLE_NAME_6 + "( " + COL_1_6 + ") " +
+            " ON UPDATE CASCADE ON DELETE CASCADE," +
+            "FOREIGN KEY (" + COL_2_8 + ") REFERENCES " + TABLE_NAME_2 + "( " + COL_1_2 + ") " +
+            " ON UPDATE CASCADE ON DELETE CASCADE); ";
+
+
 
 
     public DatabaseHelper(Context context) {
@@ -102,7 +124,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL( QUERY_1 + QUERY_2 );
+        db.execSQL( QUERY_1 );
     }
 
     @Override
@@ -112,29 +134,53 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean insertInitialData(){
+
         SQLiteDatabase db = this.getWritableDatabase ();
         ContentValues contentValues = new ContentValues();
 
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_1);
+        db.execSQL( QUERY_1 );
+
         // Todos os dados necessários
         contentValues.put(COL_1_1, 4);  // D4
+        contentValues.put(COL_2_1, 14); // dados de teste
         db.insert(TABLE_NAME_1, null, contentValues);
 
         contentValues.put(COL_1_1, 6);  //D6
+        contentValues.put(COL_2_1, 14); // dados de teste
         db.insert(TABLE_NAME_1, null, contentValues);
 
         contentValues.put(COL_1_1, 8);  //D8
+        contentValues.put(COL_2_1, 14); // dados de teste
         db.insert(TABLE_NAME_1, null, contentValues);
 
         contentValues.put(COL_1_1, 10);  //D10
+        contentValues.put(COL_2_1, 14);
         db.insert(TABLE_NAME_1, null, contentValues);
 
         contentValues.put(COL_1_1, 12);  //D12
+        contentValues.put(COL_2_1, 14);
         db.insert(TABLE_NAME_1, null, contentValues);
 
         contentValues.put(COL_1_1, 20);  //D20
+        contentValues.put(COL_2_1, 14);
         db.insert(TABLE_NAME_1, null, contentValues);
 
         return true;
+    }
+
+    public void insertInitialDataFicha(){
+        SQLiteDatabase db = this.getWritableDatabase ();
+        ContentValues contentValues = new ContentValues();
+
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_6);
+        db.execSQL( QUERY_6 );
+
+        // Todos os dados necessários
+        contentValues.put(COL_1_6, 1);  // D4
+        contentValues.put(COL_5_6, "teste");  // D4
+        db.insert(TABLE_NAME_6, null, contentValues);
+
     }
 
     public Cursor viewAllData(){

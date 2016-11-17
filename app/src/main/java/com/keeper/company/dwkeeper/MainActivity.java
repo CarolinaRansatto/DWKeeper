@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
             StringBuffer buffer = new StringBuffer();
             while(res.moveToNext()){
                 buffer.append("Lados : "+ res.getString(0) + "\n");
+                buffer.append("Testes : "+ res.getString(1) + "\n");
+
             }
 
             showMessage("Dados", buffer.toString());
