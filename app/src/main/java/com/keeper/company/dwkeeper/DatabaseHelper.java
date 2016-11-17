@@ -45,6 +45,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_10_6 = "PV_ATUAL"; //SMALLINT
     public static final String COL_11_6 = "PV_TOTAL"; //SMALLINT
     public static final String COL_12_6 = "ALI_FK";
+    public static final String COL_13_6 = "CARGA";
+    public static final String COL_14_6 = "IMG_PATH";
     public static final String COL_1_7 = "CLASSE_FK";
     public static final String COL_2_7 = "RAÇA_FK";
     public static final String COL_3_7 = "BENEFICIO";
@@ -61,7 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
              COL_2_3 + "VARCHAR(30));"; //nome
     //movimento
     public static final String QUERY_3 = "CREATE TABLE " + TABLE_NAME_2 + " ( "
-            + COL_1_2 + " INTERGER PRIMARY KEY AUTO_INCREMENT, " //pk
+            + COL_1_2 + " INTEGER PRIMARY KEY AUTO_INCREMENT, " //pk
             + COL_2_2 + " VARCHAR(20) NOT NULL, " //nome
             + COL_3_2 + " VARCHAR(255), " // descricao
             + COL_4_2 + " INTEGER NOT NULL," + // classe_fk
@@ -77,7 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //ficha
     public static final String QUERY_6 = "CREATE TABLE " + TABLE_NAME_6 +
             " (" + COL_1_6 + " INTEGER PRIMARY KEY, " +
-            COL_2_6 +" INTEGER, " + //classe fk
+            COL_2_6 +" INTEGER, " + // classe fk
             COL_3_6 +" INTEGER, " + // raça fk
             COL_4_6 + " VARCHAR(20), " + // atributos( EX: 10/2/8/3/8/6/5/3/2/9)
             COL_5_6 + " VARCHAR(30), " + // NOME
@@ -85,16 +87,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COL_7_6 + " SMALLINT, " + // NIVEL
             COL_8_6 + " INTEGER, " + // DADO_FK
             COL_9_6 + " SMALLINT, " + // ARMADURA
-            COL_10_6 + " SMALLINT, " + //PV ATUAL
-            COL_11_6 + " SMALLINT, " + //PV TOTAL
-            COL_12_6 + " INTEGER, " + //ALINHAMENTO FK
-            "FOREING KEY (" +COL_2_6 + ") REFERENCES " + TABLE_NAME_3 + " (" + COL_1_3 + ")" +
+            COL_10_6 + " SMALLINT, " + // PV ATUAL
+            COL_11_6 + " SMALLINT, " + // PV TOTAL
+            COL_12_6 + " INTEGER, " + // ALINHAMENTO FK
+            COL_13_6 + " INTEGER, " + // CARGA
+            COL_14_6 + " VARCHAR(255), " + // IMG_PATH
+            "FOREIGN KEY (" +COL_2_6 + ") REFERENCES " + TABLE_NAME_3 + " (" + COL_1_3 + ")" +
             " ON DELETE SET NULL ON UPDATE CASCADE, " +
-            "FOREING KEY (" +COL_3_6 + ") REFERENCES " + TABLE_NAME_4 + " (" + COL_1_4 + ")" +
+            "FOREIGN KEY (" +COL_3_6 + ") REFERENCES " + TABLE_NAME_4 + " (" + COL_1_4 + ")" +
             " ON DELETE SET NULL ON UPDATE CASCADE, " +
-            "FOREING KEY (" +COL_8_6 + ") REFERENCES " + TABLE_NAME_1 + " (" + COL_1_1 + ")" +
+            "FOREIGN KEY (" +COL_8_6 + ") REFERENCES " + TABLE_NAME_1 + " (" + COL_1_1 + ")" +
             " ON DELETE SET NULL ON UPDATE CASCADE, " +
-            "FOREING KEY (" +COL_12_6 + ") REFERENCES " + TABLE_NAME_5 + " (" + COL_1_5 + ")" +
+            "FOREIGN KEY (" +COL_12_6 + ") REFERENCES " + TABLE_NAME_5 + " (" + COL_1_5 + ")" +
             " ON DELETE SET NULL ON UPDATE CASCADE ); ";
     // pode_ser_de
     public static final String QUERY_7 = "CREATE TABLE " + TABLE_NAME_7 +
@@ -177,8 +181,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL( QUERY_6 );
 
         // Todos os dados necessários
-        contentValues.put(COL_1_6, 1);  // D4
-        contentValues.put(COL_5_6, "teste");  // D4
+        contentValues.put(COL_1_6, 1);  // ID
+        contentValues.put(COL_5_6, "teste");  // NOME
+        contentValues.put(COL_6_6, 666);  // EXP
+        contentValues.put(COL_7_6, 10);  // NIVEL
+        contentValues.put(COL_9_6, 7);  // ARMADURA
+        contentValues.put(COL_10_6, 19);  // PV_ATUAL
+        contentValues.put(COL_11_6, 21);  // PV_TOTAL
+        contentValues.put(COL_13_6, 3);  // CARGA
         db.insert(TABLE_NAME_6, null, contentValues);
 
     }
@@ -186,6 +196,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor viewAllData(){
         SQLiteDatabase db = this.getWritableDatabase ();
         Cursor res = db.rawQuery("select * from " + TABLE_NAME_1, null);
+        return res;
+    }
+
+    public Cursor viewFichas(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME_6,  null);
         return res;
     }
 
