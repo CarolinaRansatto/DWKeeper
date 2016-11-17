@@ -28,40 +28,72 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_4_2 = "CLASSE_FK";
     public static final String COL_1_3 = "CLASSE_ID";
     public static final String COL_2_3 = "NOME";
-    public static final String COL_1_4 = "RACA_ID";
+    public static final String COL_1_4 = "RAÇA_ID";
     public static final String COL_2_4 = "NOME";
     public static final String COL_1_5 = "ALI_ID";
     public static final String COL_1_6 = "FICHA_ID";
+    public static final String COL_2_6 = "CLASSE_FK";
+    public static final String COL_3_6 = "RAÇA_FK";
+    public static final String COL_4_6 = "ATRIBUTOS";
+    public static final String COL_5_6 = "NOME";
+    public static final String COL_6_6 = "EXP";
+    public static final String COL_7_6 = "NIVEL";
+    public static final String COL_8_6 = "DADO_FK";
+    public static final String COL_9_6 = "ARMADURA"; //SMALLINT
+    public static final String COL_10_6 = "PV_ATUAL"; //SMALLINT
+    public static final String COL_11_6 = "PV_TOTAL"; //SMALLINT
     public static final String COL_1_7 = "CLASSE_FK";
-    public static final String COL_2_7 = "RACA_FK";
+    public static final String COL_2_7 = "RAÇA_FK";
     public static final String COL_3_7 = "BENEFICIO";
 
-
+    // dados
     public static final String QUERY_1 = "CREATE TABLE " + TABLE_NAME_1 +
-            " (" + COL_1_1 + " INTEGER PRIMARY KEY AUTO_INCREMENT); ";
+            " (" + COL_1_1 + " INTEGER PRIMARY KEY AUTO_INCREMENT); "; //pk
+    //classe
     public static final String QUERY_2 = "CREATE TABLE " + TABLE_NAME_3 +
-            " (" + COL_1_3 + "INTEGER PRIMARY KEY AUTO_INCREMENT," +
-             COL_2_3 + "VARCHAR(50));";
+            " (" + COL_1_3 + "INTEGER PRIMARY KEY AUTO_INCREMENT," +// pk
+             COL_2_3 + "VARCHAR(30));"; //nome
+    //movimento
     public static final String QUERY_3 = "CREATE TABLE " + TABLE_NAME_2 + " ( "
-            + COL_1_2 + " INTERGER PRIMARY KEY AUTO_INCREMENT, "
-            + COL_2_2 + " VARCHAR(20) NOT NULL, "
-            + COL_3_2 + " VARCHAR(255), "
-            + COL_4_2 + " INTEGER NOT NULL," +
+            + COL_1_2 + " INTERGER PRIMARY KEY AUTO_INCREMENT, " //pk
+            + COL_2_2 + " VARCHAR(20) NOT NULL, " //nome
+            + COL_3_2 + " VARCHAR(255), " // descricao
+            + COL_4_2 + " INTEGER NOT NULL," + // classe_fk
             " FOREIGN KEY (" + COL_4_2 + ") REFERENCES " + TABLE_NAME_3 + " (ficha_id)" +
-            "ON UPDATE CASCADE ON DELETE CASCADE); ";
+            " ON UPDATE CASCADE ON DELETE CASCADE); ";
+    //raça
     public static final String QUERY_4 = "CREATE TABLE " + TABLE_NAME_4 +
-            " (" + COL_1_4 + "INTEGER PRIMARY KEY AUTO_INCREMENT," +
-             COL_2_4 + "VARCHAR(50)); ";
+            " (" + COL_1_4 + " INTEGER PRIMARY KEY AUTO_INCREMENT, " +  ///pk
+             COL_2_4 + " VARCHAR(50)); "; //nome
+    //alinhamento
     public static final String QUERY_5 = "CREATE TABLE " + TABLE_NAME_5 +
-            " (" + COL_1_5 + "INTEGER PRIMARY KEY ATUO_INCREMENT); ";
+            " (" + COL_1_5 + " INTEGER PRIMARY KEY ATUO_INCREMENT); "; //pk
+    //ficha
     public static final String QUERY_6 = "CREATE TABLE " + TABLE_NAME_6 +
-            " (" + COL_1_6 + "INTEGER PRIMARY KEY AUTO_INCREMENT); ";
+            " (" + COL_1_6 + " INTEGER PRIMARY KEY AUTO_INCREMENT, " +
+            COL_2_6 +" INTEGER, " + //classe fk
+            COL_3_6 +" INTEGER, " + // raça fk
+            COL_4_6 + " VARCHAR(20), " + // atributos( EX: 10/2/8/3/8/6/5/3/2/9)
+            COL_5_6 + " VARCHAR(30), " + // NOME
+            COL_6_6 + " INTEGER, " + // EXP
+            COL_7_6 + " SMALLINT, " + // NIVEL
+            COL_8_6 + " INTEGER, " + // DADO_FK
+            COL_9_6 + " SMALLINT, " + // ARMADURA
+            COL_10_6 + " SMALLINT, " + //PV ATUAL
+            COL_11_6 + " SMALLINT, " + //PV TOTAL
+            "FOREING KEY (" +COL_2_6 + ") REFERENCES " + TABLE_NAME_3 + " (" + COL_1_3 + ")" +
+            " ON DELETE SET NULL ON UPDATE CASCADE," +
+            "FOREING KEY (" +COL_3_6 + ") REFERENCES " + TABLE_NAME_4 + " (" + COL_1_4 + ")" +
+            " ON DELETE SET NULL ON UPDATE CASCADE ); ";
+    // pode_ser_de
     public static final String QUERY_7 = "CREATE TABLE " + TABLE_NAME_7 +
-            " (" + COL_1_7 + "INTEGER," +
-            COL_2_7 + "INTEGER," +
-            COL_3_7 + "VARCHAR(255)" +
-            "FOREIGN KEY (" + COL_1_7 + ") REFERENCES " + TABLE_NAME_4 + " " +
-            "ON UPDATE CASCADE ON DELETE CASCADE); ";
+            " (" + COL_1_7 + " INTEGER," + //classe fk
+            COL_2_7 + " INTEGER," + //raça fk
+            COL_3_7 + " VARCHAR(255)" + //beneficio
+            "FOREIGN KEY (" + COL_1_7 + ") REFERENCES " + TABLE_NAME_3 + " " +
+            " ON UPDATE CASCADE ON DELETE CASCADE," +
+            "FOREIGN KEY (" + COL_2_7 + ") REFERENCES " + TABLE_NAME_4 + " " +
+            " ON UPDATE CASCADE ON DELETE CASCADE); ";
 
 
     public DatabaseHelper(Context context) {
@@ -70,7 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL( QUERY_1 + QUERY_2 + QUERY_3);
+        db.execSQL( QUERY_1 + QUERY_2 );
     }
 
     @Override
@@ -106,9 +138,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Cursor viewAllData(){
-        // Somente os dados vão funcionar por enquanto
         SQLiteDatabase db = this.getWritableDatabase ();
         Cursor res = db.rawQuery("select * from " + TABLE_NAME_1, null);
+        return res;
+    }
+
+    public Cursor viewCustomData(String column, String table){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select " + column + " from " + table, null);
         return res;
     }
 
