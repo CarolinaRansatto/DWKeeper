@@ -122,6 +122,26 @@ public class FichaHelper {
         this.dano = dano;
     }
 
+    public void getAtributo(String atr){
+    
+        switch (atr){
+            case "for"
+                break;
+            case "cons"
+                break;
+            case "des"
+                break;
+            case "cons"
+                break;
+            case "int"
+                break;
+            case "car"
+                break;
+            case "sab"
+                break;
+        }
+        
+    }
 
 
 
