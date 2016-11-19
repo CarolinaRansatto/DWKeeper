@@ -33,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_1_4 = "RAÇA_ID";
     public static final String COL_2_4 = "NOME";
     public static final String COL_1_5 = "ALI_ID";
+    public static final String COL_2_5 = "DESCRICAO";
     public static final String COL_1_6 = "FICHA_ID";
     public static final String COL_2_6 = "CLASSE_FK";
     public static final String COL_3_6 = "RAÇA_FK";
@@ -80,7 +81,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //alinhamento
     public static final String QUERY_5 = "CREATE TABLE " + TABLE_NAME_5 +
-            " (" + COL_1_5 + " INTEGER PRIMARY KEY ATUO_INCREMENT); "; //pk
+            " (" + COL_1_5 + " INTEGER PRIMARY KEY AUTO_INCREMENT," +
+             COL_2_5 + " VARCHAR(50)); "; //pk
 
     //ficha
     public static final String QUERY_6 = "CREATE TABLE " + TABLE_NAME_6 +
@@ -150,10 +152,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         Cursor cursorFicha = bd.rawQuery("select * FROM " + TABLE_NAME_6 + " WHERE " + COL_1_6 + " = " + id + " ;", null);
-        Cursor cursorClasse = bd.rawQuery("select " + COL_2_3 + " FROM " + TABLE_NAME_3 + "WHERE " + COL_1_3 + " = " + cursorFicha.getInt(1), null);
-        Cursor cursorRaça = bd.rawQuery("select " + COL_2_3 + " FROM " + TABLE_NAME_3 + "WHERE " + COL_1_3 + " = " + cursorFicha.getInt(1), null);
+        //Cursor cursorClasse = bd.rawQuery("select " + COL_2_3 + " FROM " + TABLE_NAME_3 + "WHERE " + COL_1_3 + " = " + cursorFicha.getInt(1), null);
+        //Cursor cursorRaça = bd.rawQuery("select " + COL_2_4 + " FROM " + TABLE_NAME_4 + "WHERE " + COL_1_4 + " = " + cursorFicha.getInt(2), null);
+        //Cursor cursorAlinhamento = bd.rawQuery("select " + COL_2_5 + " FROM " + TABLE_NAME_5 + "WHERE " + COL_1_5 + " = " + cursorFicha.getInt(11), null);
 
-
+        cursorFicha.moveToNext();
         // destrincha os atributos
         String [] auxArrayAtr = cursorFicha.getString(3).split("/"); // Quebra a string dos atributos nas barras para separar os atributos
         int [] arrayAtr = new int [12];
@@ -165,10 +168,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ficha.setAtributos(arrayAtr);
 
         // seta classe
-        ficha.setClasse(cursorClasse.getString(0));
+        //ficha.setClasse(cursorClasse.getString(0));
 
         // seta raça
-        ficha.setRaça(cursorFicha.getInt(2));
+        //ficha.setRaça(cursorRaça.getString(0));
 
         // seta nome
         ficha.setNome(cursorFicha.getString(4));
@@ -192,7 +195,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ficha.setPv_total(cursorFicha.getInt(10));
 
         //seta alinhamento
-        ficha.setAlinhamento(cursorFicha.getInt(11));
+        //ficha.setAlinhamento(cursorAlinhamento.getString(0));
 
         //seta carga
         ficha.setCarga(cursorFicha.getInt(12));
@@ -246,8 +249,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Todos os dados necessários
         contentValues.put(COL_1_6, 1);  // ID
         contentValues.put(COL_5_6, "teste");  // NOME
+        contentValues.put(COL_4_6, "1/1/1/1/1/1/1/1/1/1/1/1");  // ATRIBUTOS
         contentValues.put(COL_6_6, 666);  // EXP
         contentValues.put(COL_7_6, 10);  // NIVEL
+        contentValues.put(COL_8_6, 12);  // DANO
         contentValues.put(COL_9_6, 7);  // ARMADURA
         contentValues.put(COL_10_6, 19);  // PV_ATUAL
         contentValues.put(COL_11_6, 21);  // PV_TOTAL
