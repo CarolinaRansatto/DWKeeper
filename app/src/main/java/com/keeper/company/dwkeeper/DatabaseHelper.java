@@ -57,10 +57,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String QUERY_1 = "CREATE TABLE " + TABLE_NAME_1 +
             " (" + COL_1_1 + " INTEGER PRIMARY KEY, " +
             COL_2_1 + " INTEGER ); "; //pk
+
     //classe
     public static final String QUERY_2 = "CREATE TABLE " + TABLE_NAME_3 +
             " (" + COL_1_3 + "INTEGER PRIMARY KEY AUTO_INCREMENT," +// pk
              COL_2_3 + "VARCHAR(30));"; //nome
+
     //movimento
     public static final String QUERY_3 = "CREATE TABLE " + TABLE_NAME_2 + " ( "
             + COL_1_2 + " INTEGER PRIMARY KEY AUTO_INCREMENT, " //pk
@@ -69,13 +71,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_4_2 + " INTEGER NOT NULL," + // classe_fk
             " FOREIGN KEY (" + COL_4_2 + ") REFERENCES " + TABLE_NAME_3 + " (ficha_id)" +
             " ON UPDATE CASCADE ON DELETE CASCADE); ";
+
+
     //raça
     public static final String QUERY_4 = "CREATE TABLE " + TABLE_NAME_4 +
             " (" + COL_1_4 + " INTEGER PRIMARY KEY AUTO_INCREMENT, " +  ///pk
              COL_2_4 + " VARCHAR(50)); "; //nome
+
     //alinhamento
     public static final String QUERY_5 = "CREATE TABLE " + TABLE_NAME_5 +
             " (" + COL_1_5 + " INTEGER PRIMARY KEY ATUO_INCREMENT); "; //pk
+
     //ficha
     public static final String QUERY_6 = "CREATE TABLE " + TABLE_NAME_6 +
             " (" + COL_1_6 + " INTEGER PRIMARY KEY, " +
@@ -100,6 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             " ON DELETE SET NULL ON UPDATE CASCADE, " +
             "FOREIGN KEY (" +COL_12_6 + ") REFERENCES " + TABLE_NAME_5 + " (" + COL_1_5 + ")" +
             " ON DELETE SET NULL ON UPDATE CASCADE ); ";
+
     // pode_ser_de
     public static final String QUERY_7 = "CREATE TABLE " + TABLE_NAME_7 +
             " (" + COL_1_7 + " INTEGER, " + //classe fk
@@ -135,6 +142,62 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS" + TABLE_NAME_1);
         onCreate(sqLiteDatabase);
+    }
+
+    public FichaHelper loadFicha(int id){
+        SQLiteDatabase bd = this.getWritableDatabase();
+        FichaHelper ficha = new FichaHelper();
+
+
+        Cursor cursorFicha = bd.rawQuery("select * FROM " + TABLE_NAME_6 + " WHERE " + COL_1_6 + " = " + id + " ;", null);
+        Cursor cursorClasse = bd.rawQuery("select " + COL_2_3 + " FROM " + TABLE_NAME_3 + "WHERE " + COL_1_3 + " = " + cursorFicha.getInt(1), null);
+        Cursor cursorRaça = bd.rawQuery("select " + COL_2_3 + " FROM " + TABLE_NAME_3 + "WHERE " + COL_1_3 + " = " + cursorFicha.getInt(1), null);
+
+
+        // destrincha os atributos
+        String [] auxArrayAtr = cursorFicha.getString(3).split("/"); // Quebra a string dos atributos nas barras para separar os atributos
+        int [] arrayAtr = new int [12];
+
+        for (int i = 0; i < auxArrayAtr.length; i++){
+            arrayAtr[i] = Integer.parseInt(auxArrayAtr[i]);
+        }
+        // seta os atributos
+        ficha.setAtributos(arrayAtr);
+
+        // seta classe
+        ficha.setClasse(cursorClasse.getString(0));
+
+        // seta raça
+        ficha.setRaça(cursorFicha.getInt(2));
+
+        // seta nome
+        ficha.setNome(cursorFicha.getString(4));
+
+        // seta exp
+        ficha.setExp(cursorFicha.getInt(5));
+
+        // seta nivel
+        ficha.setNivel(cursorFicha.getInt(6));
+
+        // seta dano
+        ficha.setDano(cursorFicha.getInt(7));
+
+        //seta armadura
+        ficha.setArmadura(cursorFicha.getInt(8));
+
+        //seta pv atual
+        ficha.setPv_atual(cursorFicha.getInt(9));
+
+        //seta pv total
+        ficha.setPv_total(cursorFicha.getInt(10));
+
+        //seta alinhamento
+        ficha.setAlinhamento(cursorFicha.getInt(11));
+
+        //seta carga
+        ficha.setCarga(cursorFicha.getInt(12));
+
+        return ficha;
     }
 
     public boolean insertInitialData(){
