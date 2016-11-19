@@ -202,6 +202,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return ficha;
     }
+    
+    public void saveFicha(FichaHelper ficha){
+        SQLiteDatabase bd = this.getWritableDatabase();
+    }
 
     public boolean insertInitialData(){
 
