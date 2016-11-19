@@ -8,16 +8,21 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Ficha"
+        <activity
+            android:name=".Ficha"
             android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Dados" />
+        <activity
+            android:name=".NovaFicha"
+            android:label="@string/title_activity_nova_ficha"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Dados"></activity>
     </application>
 
 </manifest>
