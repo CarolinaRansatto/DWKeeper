@@ -122,23 +122,37 @@ public class FichaHelper {
         this.dano = dano;
     }
 
-    public void getAtributo(String atr){
-    
+    public int[2] getAtributo(String atr){
+        
+        int [] aux = new int [2];
+        
         switch (atr){
-            case "for"
+            case "for":
+                aux[0] = atributos[0];
+                aux[1] = atributos[1];
                 break;
-            case "cons"
+            case "des":
+                aux[0] = atributos[2];
+                aux[1] = atributos[3];
                 break;
-            case "des"
+            case "cons":
+                aux[0] = atributos[4];
+                aux[1] = atributos[5];
                 break;
-            case "cons"
+            case "int":
+                aux[0] = atributos[6];
+                aux[1] = atributos[7];
                 break;
-            case "int"
+            case "sab":
+                aux[0] = atributos[8];
+                aux[1] = atributos[9];
                 break;
-            case "car"
+            case "car":
+                aux[0] = atributos[10];
+                aux[1] = atributos[11];
                 break;
-            case "sab"
-                break;
+        
+            return aux;
         }
         
     }
