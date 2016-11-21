@@ -87,8 +87,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //ficha
     public static final String QUERY_6 = "CREATE TABLE " + TABLE_NAME_6 +
             " (" + COL_1_6 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            COL_2_6 +" INTEGER, " + // classe fk
-            COL_3_6 +" INTEGER, " + // raça fk
+            COL_2_6 +" INTEGER, " + // CLASSE FK
+            COL_3_6 +" INTEGER, " + // RAÇA FK
             COL_4_6 + " VARCHAR(20), " + // atributos( EX: 10/2/8/3/8/6/5/3/2/9)
             COL_5_6 + " VARCHAR(30), " + // NOME
             COL_6_6 + " INTEGER, " + // EXP
@@ -209,7 +209,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Todos os dados necessários
         cv.put(COL_5_6, ficha.getNome());  // NOME
-        cv.put(COL_4_6, "1/1/1/1/1/1/1/1/1/1/1/1");  // ATRIBUTOS
+        cv.put(COL_4_6, buildAtributosString(ficha.getAtributos()));  // ATRIBUTOS
         cv.put(COL_6_6, ficha.getExp());  // EXP
         cv.put(COL_7_6, ficha.getNivel());  // NIVEL
         cv.put(COL_8_6, ficha.getDano());  // DANO
@@ -228,6 +228,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             bd.update(TABLE_NAME_6, cv, COL_1_6 + "=" +ficha.getId(), null);
         }
 
+    }
+
+    private String buildAtributosString(int atr []){
+        String res = "";
+        res += "" + atr[0];
+        for (int i = 1; i < atr.length; i++){
+            res += "/" + atr[1];
+        }
+        return res;
     }
 
     public boolean insertInitialData(){
