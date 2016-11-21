@@ -86,7 +86,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //ficha
     public static final String QUERY_6 = "CREATE TABLE " + TABLE_NAME_6 +
-            " (" + COL_1_6 + " INTEGER PRIMARY KEY, " +
+            " (" + COL_1_6 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COL_2_6 +" INTEGER, " + // classe fk
             COL_3_6 +" INTEGER, " + // raça fk
             COL_4_6 + " VARCHAR(20), " + // atributos( EX: 10/2/8/3/8/6/5/3/2/9)
@@ -149,7 +149,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public FichaHelper loadFicha(int id){
         SQLiteDatabase bd = this.getWritableDatabase();
         FichaHelper ficha = new FichaHelper();
-
+        ficha.setId(id);
 
         Cursor cursorFicha = bd.rawQuery("select * FROM " + TABLE_NAME_6 + " WHERE " + COL_1_6 + " = " + id + " ;", null);
         //Cursor cursorClasse = bd.rawQuery("select " + COL_2_3 + " FROM " + TABLE_NAME_3 + "WHERE " + COL_1_3 + " = " + cursorFicha.getInt(1), null);
@@ -205,6 +205,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     
     public void saveFicha(FichaHelper ficha){
         SQLiteDatabase bd = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        // Todos os dados necessários
+        cv.put(COL_5_6, ficha.getNome());  // NOME
+        cv.put(COL_4_6, "1/1/1/1/1/1/1/1/1/1/1/1");  // ATRIBUTOS
+        cv.put(COL_6_6, ficha.getExp());  // EXP
+        cv.put(COL_7_6, ficha.getNivel());  // NIVEL
+        cv.put(COL_8_6, ficha.getDano());  // DANO
+        cv.put(COL_9_6, ficha.getArmadura());  // ARMADURA
+        cv.put(COL_10_6, ficha.getPv_atual());  // PV_ATUAL
+        cv.put(COL_11_6, ficha.getPv_total());  // PV_TOTAL
+        cv.put(COL_13_6, ficha.getCarga());  // CARGA
+
+
+        // não existia uma ficha previamente, então vamos criar uma
+        if (ficha.getId() == 0){
+            // ta faltando o id. temos que checar a funcionalidade do auto_increment aqui
+            bd.insert(TABLE_NAME_6, null, cv);
+        }else {
+            cv.put(COL_1_6, ficha.getId());  // ID
+            bd.update(TABLE_NAME_6, cv, COL_1_6 + "=" +ficha.getId(), null);
+        }
+
     }
 
     public boolean insertInitialData(){
@@ -251,7 +274,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL( QUERY_6 );
 
         // Todos os dados necessários
-        contentValues.put(COL_1_6, 1);  // ID
+        //
+        // contentValues.put(COL_1_6, 1);  // ID
         contentValues.put(COL_5_6, "teste");  // NOME
         contentValues.put(COL_4_6, "1/1/1/1/1/1/1/1/1/1/1/1");  // ATRIBUTOS
         contentValues.put(COL_6_6, 666);  // EXP

@@ -6,6 +6,16 @@ package com.keeper.company.dwkeeper;
 
 public class FichaHelper {
 
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private int nivel;
     private int  atributos [];
     private String classe;
@@ -122,7 +132,7 @@ public class FichaHelper {
         this.dano = dano;
     }
 
-    public int[2] getAtributo(String atr){
+    public int[] getAtributo(String atr){
         
         int [] aux = new int [2];
         
@@ -152,9 +162,9 @@ public class FichaHelper {
                 aux[1] = atributos[11];
                 break;
         
-            return aux;
+
         }
-        
+        return aux;
     }
 
 
