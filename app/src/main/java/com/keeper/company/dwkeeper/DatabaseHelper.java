@@ -28,8 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_2_2 = "NOME";
     public static final String COL_3_2 = "DESCRICAO";
     public static final String COL_4_2 = "CLASSE_FK";
-    public static final String COL_1_3 = "CLASSE_ID";
-    public static final String COL_2_3 = "NOME";
+    public static final String COL_1_3 = "NOME";
     public static final String COL_1_4 = "RAÇA_ID";
     public static final String COL_2_4 = "NOME";
     public static final String COL_1_5 = "ALI_ID";
@@ -61,8 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //classe
     public static final String QUERY_2 = "CREATE TABLE " + TABLE_NAME_3 +
-            " (" + COL_1_3 + "INTEGER PRIMARY KEY AUTO_INCREMENT," +// pk
-             COL_2_3 + "VARCHAR(30));"; //nome
+             COL_1_3 + "VARCHAR(30) PRIMARY KEY);"; //nome
 
     //movimento
     public static final String QUERY_3 = "CREATE TABLE " + TABLE_NAME_2 + " ( "
@@ -168,7 +166,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ficha.setAtributos(arrayAtr);
 
         // seta classe
-        //ficha.setClasse(cursorClasse.getString(0));
+        ficha.setClasse(cursorClasse.getString(0));
 
         // seta raça
         //ficha.setRaça(cursorRaça.getString(0));
@@ -320,6 +318,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase ();
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_1);
         onCreate(db);
+    }
+
+    private String getClassName(int classId){
+        SQLiteDatabase bd = getWritableDatabase();
+        Cursor cursor = bd.rawQuery("SELECT " + COL_2_3 + " FROM " + TABLE_NAME_3 + " WHERE " + COL_1_3 + " = " + classId + ";", null);
+        cursor.moveToNext();
+        return cursor.getString(0);
+    }
+
+    private String getRaçaName(int raçaId){
+        SQLiteDatabase bd = getWritableDatabase();
+        Cursor cursor = bd.rawQuery("SELECT " + COL_2_4 + " FROM " + TABLE_NAME_4 + " WHERE " + COL_1_4 + " = " + raçaId + ";", null);
+        cursor.moveToNext();
+        return cursor.getString(0);
     }
 
 }
