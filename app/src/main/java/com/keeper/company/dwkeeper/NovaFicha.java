@@ -1,6 +1,7 @@
 package com.keeper.company.dwkeeper;
 
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,12 +12,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.net.URI;
@@ -45,6 +48,8 @@ public class NovaFicha extends AppCompatActivity
      */
     private ViewPager mViewPager;
 
+    DatabaseHelper bd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +66,25 @@ public class NovaFicha extends AppCompatActivity
         mViewPager.setAdapter(mSectionsPagerAdapter);
     }
 
+    @Override
+    public void onPause(){
+        //salva ficha
+
+        super.onPause();
+        //bd = new DatabaseHelper(this);
+
+        FichaStats fichaStats = (FichaStats) getSupportFragmentManager().findFragmentById(R.id.stats);
+
+        if (fichaStats != null){
+            Log.d("textTest", "fichaStatsnotnull");
+        }else {
+            Log.d("textTest", "fichaStatsnulll"); // fichas stats esta setndo null
+        }
+        //FichaHelper ficha = fichaStats.ficha;
+        //EditText exp = fichaStats.editExp;
+        //ficha.setExp(Integer.parseInt(exp.getText().toString()));
+        //bd.saveFicha(ficha, 1);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,6 +131,7 @@ public class NovaFicha extends AppCompatActivity
             switch (position) {
                 case 1:
                     return FichaDetalhes.newInstance();
+
                 case 2:
                     return FichaTech.newInstance();
                 default:

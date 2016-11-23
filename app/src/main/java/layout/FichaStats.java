@@ -4,10 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import com.keeper.company.dwkeeper.DatabaseHelper;
+import com.keeper.company.dwkeeper.FichaHelper;
 import com.keeper.company.dwkeeper.R;
 
 /**
@@ -19,7 +23,13 @@ import com.keeper.company.dwkeeper.R;
  * create an instance of this fragment.
  */
 public class FichaStats extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
+    EditText editNome;
+    public EditText editExp;
+    EditText editNivel;
+
+    DatabaseHelper bd;
+    public FichaHelper ficha;
+    /// / TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     //private static final String ARG_PARAM1 = "param1";
     //private static final String ARG_PARAM2 = "param2";
@@ -67,6 +77,17 @@ public class FichaStats extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ficha_stats, container, false);
     }
+
+    @Override
+    public void onViewCreated(View v, Bundle b){
+
+        bd = new DatabaseHelper(this.getContext());
+        ficha = bd.loadFicha(1);
+        editExp = (EditText) getView().findViewById(R.id.editExp);
+        editExp.setText("" + ficha.getExp());
+    }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

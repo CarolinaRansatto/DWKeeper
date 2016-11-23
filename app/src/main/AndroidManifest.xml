@@ -9,13 +9,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".NovaFicha"
+            android:name=".Ficha"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".Dados" />
         <activity
-            android:name=".Ficha"
-            android:label="Ficha"
+            android:name=".NovaFicha"
+            android:label="NovaFicha"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

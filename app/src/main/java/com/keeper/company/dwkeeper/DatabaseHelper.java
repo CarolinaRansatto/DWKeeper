@@ -163,11 +163,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // seta os atributos
         ficha.setAtributos(arrayAtr);
 
+        //seta id
+        ficha.setId(cursorFicha.getInt(0));
+
         // seta classe
-        //ficha.setClasse(cursorClasse.getString(0));
+        ficha.setClasse(cursorFicha.getString(1));
 
         // seta raça
-        //ficha.setRaça(cursorRaça.getString(0));
+        ficha.setRaça(cursorFicha.getString(2));
 
         // seta nome
         ficha.setNome(cursorFicha.getString(4));
@@ -191,7 +194,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ficha.setPv_total(cursorFicha.getInt(10));
 
         //seta alinhamento
-        //ficha.setAlinhamento(cursorAlinhamento.getString(0));
+        ficha.setAlinhamento(cursorFicha.getString(11));
 
         //seta carga
         ficha.setCarga(cursorFicha.getInt(12));
@@ -199,7 +202,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return ficha;
     }
     
-    public void saveFicha(FichaHelper ficha){
+    public void saveFicha(FichaHelper ficha, int id){
         SQLiteDatabase bd = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -221,7 +224,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             bd.insert(TABLE_NAME_6, null, cv);
         }else {
             cv.put(COL_1_6, ficha.getId());  // ID
-            bd.update(TABLE_NAME_6, cv, COL_1_6 + "=" +ficha.getId(), null);
+            bd.update(TABLE_NAME_6, cv, COL_1_6 + "=" + id, null);
         }
 
     }

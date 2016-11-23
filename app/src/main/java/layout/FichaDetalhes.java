@@ -7,7 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import com.keeper.company.dwkeeper.DatabaseHelper;
+import com.keeper.company.dwkeeper.FichaHelper;
 import com.keeper.company.dwkeeper.R;
 
 /**
@@ -23,6 +26,7 @@ public class FichaDetalhes extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
     // TODO: Rename and change types of parameters
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -47,7 +51,7 @@ public class FichaDetalhes extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +59,7 @@ public class FichaDetalhes extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ficha_detalhes, container, false);
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
