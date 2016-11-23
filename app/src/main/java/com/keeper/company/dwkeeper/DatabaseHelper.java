@@ -9,6 +9,11 @@ import android.view.View;
 
 /**
  * Created by gustavo on 09/11/16.
+ *
+ * Apesar de que usaremos apensar a tabela "ficha" e outras auxiliares inicialmente,
+ * t0do restante está preparado para aplicarmos em uma verdadeira aplicação onde
+ * escolhas poderão ser feitas diferentemente da representação no papel
+ *
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -34,17 +39,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_1_5 = "ALI_ID";
     public static final String COL_2_5 = "DESCRICAO";
     public static final String COL_1_6 = "FICHA_ID";
-    public static final String COL_2_6 = "CLASSE_FK";
-    public static final String COL_3_6 = "RAÇA_FK";
+    public static final String COL_2_6 = "CLASSE";
+    public static final String COL_3_6 = "RAÇA";
     public static final String COL_4_6 = "ATRIBUTOS";
     public static final String COL_5_6 = "NOME";
     public static final String COL_6_6 = "EXP";
     public static final String COL_7_6 = "NIVEL";
-    public static final String COL_8_6 = "DADO_FK";
+    public static final String COL_8_6 = "DANO";
     public static final String COL_9_6 = "ARMADURA"; //SMALLINT
     public static final String COL_10_6 = "PV_ATUAL"; //SMALLINT
     public static final String COL_11_6 = "PV_TOTAL"; //SMALLINT
-    public static final String COL_12_6 = "ALI_FK";
+    public static final String COL_12_6 = "ALINHAMENTO";
     public static final String COL_13_6 = "CARGA";
     public static final String COL_14_6 = "IMG_PATH";
     public static final String COL_1_7 = "CLASSE_FK";
@@ -85,27 +90,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //ficha
     public static final String QUERY_6 = "CREATE TABLE " + TABLE_NAME_6 +
             " (" + COL_1_6 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            COL_2_6 +" INTEGER, " + // CLASSE FK
-            COL_3_6 +" INTEGER, " + // RAÇA FK
-            COL_4_6 + " VARCHAR(20), " + // atributos( EX: 10/2/8/3/8/6/5/3/2/9)
+            COL_2_6 +" VARCHAR(8), " + // CLASSE
+            COL_3_6 +" VARCHAR(8), " + // RAÇA
+            COL_4_6 + " CHAR(20), " + // atributos( EX: 10/2/8/3/8/6/5/3/2/9)
             COL_5_6 + " VARCHAR(30), " + // NOME
             COL_6_6 + " INTEGER, " + // EXP
             COL_7_6 + " SMALLINT, " + // NIVEL
-            COL_8_6 + " INTEGER, " + // DADO_FK
+            COL_8_6 + " INTEGER, " + // DANO
             COL_9_6 + " SMALLINT, " + // ARMADURA
             COL_10_6 + " SMALLINT, " + // PV ATUAL
             COL_11_6 + " SMALLINT, " + // PV TOTAL
-            COL_12_6 + " INTEGER, " + // ALINHAMENTO FK
+            COL_12_6 + " VARCHAR(100), " + // ALINHAMENTO
             COL_13_6 + " INTEGER, " + // CARGA
-            COL_14_6 + " VARCHAR(255), " + // IMG_PATH
-            "FOREIGN KEY (" +COL_2_6 + ") REFERENCES " + TABLE_NAME_3 + " (" + COL_1_3 + ")" +
-            " ON DELETE SET NULL ON UPDATE CASCADE, " +
-            "FOREIGN KEY (" +COL_3_6 + ") REFERENCES " + TABLE_NAME_4 + " (" + COL_1_4 + ")" +
-            " ON DELETE SET NULL ON UPDATE CASCADE, " +
-            "FOREIGN KEY (" +COL_8_6 + ") REFERENCES " + TABLE_NAME_1 + " (" + COL_1_1 + ")" +
-            " ON DELETE SET NULL ON UPDATE CASCADE, " +
-            "FOREIGN KEY (" +COL_12_6 + ") REFERENCES " + TABLE_NAME_5 + " (" + COL_1_5 + ")" +
-            " ON DELETE SET NULL ON UPDATE CASCADE ); ";
+            COL_14_6 + " VARCHAR(255)); ";  // IMG_PATH
+
 
     // pode_ser_de
     public static final String QUERY_7 = "CREATE TABLE " + TABLE_NAME_7 +
@@ -166,7 +164,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ficha.setAtributos(arrayAtr);
 
         // seta classe
-        ficha.setClasse(cursorClasse.getString(0));
+        //ficha.setClasse(cursorClasse.getString(0));
 
         // seta raça
         //ficha.setRaça(cursorRaça.getString(0));
@@ -320,18 +318,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    private String getClassName(int classId){
+    /**private String getClassName(int classId){
         SQLiteDatabase bd = getWritableDatabase();
-        Cursor cursor = bd.rawQuery("SELECT " + COL_2_3 + " FROM " + TABLE_NAME_3 + " WHERE " + COL_1_3 + " = " + classId + ";", null);
+        Cursor cursor = bd.rawQuery("SELECT " + COL_1_3 + " FROM " + TABLE_NAME_3 + " WHERE " + COL_1_3 + " = " + classId + ";", null);
         cursor.moveToNext();
         return cursor.getString(0);
-    }
+    }**/
 
-    private String getRaçaName(int raçaId){
+    /**private String getRaçaName(int raçaId){
         SQLiteDatabase bd = getWritableDatabase();
         Cursor cursor = bd.rawQuery("SELECT " + COL_2_4 + " FROM " + TABLE_NAME_4 + " WHERE " + COL_1_4 + " = " + raçaId + ";", null);
         cursor.moveToNext();
         return cursor.getString(0);
-    }
+    }**/
 
 }
