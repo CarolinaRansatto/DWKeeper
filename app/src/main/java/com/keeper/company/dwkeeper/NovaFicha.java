@@ -49,6 +49,9 @@ public class NovaFicha extends AppCompatActivity
     private ViewPager mViewPager;
 
     DatabaseHelper bd;
+    private FichaStats fichaStats;
+    private FichaDetalhes fichaDetalhes;
+    private FichaTech fichaTech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +76,7 @@ public class NovaFicha extends AppCompatActivity
         super.onPause();
         //bd = new DatabaseHelper(this);
 
-        FichaStats fichaStats = (FichaStats) getSupportFragmentManager().findFragmentById(R.id.stats);
+        //FichaStats fichaStats = (FichaStats) getSupportFragmentManager().findFragmentById(R.id.stats);
 
         if (fichaStats != null){
             Log.d("textTest", "fichaStatsnotnull");
@@ -131,7 +134,6 @@ public class NovaFicha extends AppCompatActivity
             switch (position) {
                 case 1:
                     return FichaDetalhes.newInstance();
-
                 case 2:
                     return FichaTech.newInstance();
                 default:
@@ -143,6 +145,23 @@ public class NovaFicha extends AppCompatActivity
         public int getCount() {
             // Show 3 total pages.
             return 3;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            Fragment createdFragment = (Fragment) super.instantiateItem(container, position);
+            switch (position) {
+                case 0:
+                    fichaStats = (FichaStats) createdFragment;
+                    break;
+                case 1:
+                    fichaDetalhes = (FichaDetalhes) createdFragment;
+                    break;
+                case 2:
+                    fichaTech = (FichaTech) createdFragment;
+                    break;
+            }
+            return createdFragment;
         }
 
         @Override

@@ -133,7 +133,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL( QUERY_1 );
+        db.execSQL( QUERY_6 );
+        insertInitialDataFicha();
     }
 
     @Override
@@ -144,6 +145,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public FichaHelper loadFicha(int id){
         SQLiteDatabase bd = this.getWritableDatabase();
+        onCreate(bd);
         FichaHelper ficha = new FichaHelper();
         ficha.setId(id);
 

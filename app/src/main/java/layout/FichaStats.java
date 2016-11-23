@@ -81,10 +81,10 @@ public class FichaStats extends Fragment {
     @Override
     public void onViewCreated(View v, Bundle b){
 
-        bd = new DatabaseHelper(this.getContext());
-        ficha = bd.loadFicha(1);
-        editExp = (EditText) getView().findViewById(R.id.editExp);
-        editExp.setText("" + ficha.getExp());
+//        bd = new DatabaseHelper(this.getContext());
+//        ficha = bd.loadFicha(1);
+//        editExp = (EditText) getView().findViewById(R.id.editExp);
+//        editExp.setText("" + ficha.getExp());
     }
 
 
