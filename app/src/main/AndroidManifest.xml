@@ -10,8 +10,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".NovaFicha"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".Dados" />
         <activity
@@ -20,9 +19,11 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SelecaoFicha"></activity>
     </application>
 
 </manifest>
