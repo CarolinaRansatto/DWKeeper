@@ -20,8 +20,7 @@
             android:id="@+id/tagNome"
             android:layout_weight="1"
             android:textSize="16sp"
-            android:paddingRight="6dp"
-            android:fontFamily="sans-serif" />
+            android:paddingRight="6dp" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -50,8 +49,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tagExp"
             android:layout_weight="1"
-            android:paddingRight="6dp"
-            android:fontFamily="sans-serif" />
+            android:paddingRight="6dp" />
 
         <EditText
             android:layout_width="35dp"
@@ -71,8 +69,7 @@
             android:id="@+id/tagNivel"
             android:layout_weight="1"
             android:paddingRight="6dp"
-            android:layout_marginLeft="70dp"
-            android:fontFamily="sans-serif" />
+            android:layout_marginLeft="70dp" />
 
         <EditText
             android:layout_width="35dp"
@@ -90,13 +87,58 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/stats"
+        android:layout_marginTop="38dp"
+        android:id="@+id/Info"
         android:layout_below="@+id/linhaNivel"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="28dp">
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/viewClasse"
+                android:textSize="20sp" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/viewRaca"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@color/colorPrimary"
+        android:id="@+id/viewImagem"
+        android:layout_weight="1"
+        android:layout_alignBottom="@+id/stats"
+        android:layout_alignLeft="@+id/Info"
+        android:layout_alignStart="@+id/Info" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stats"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/linhaNome"
+        android:layout_toEndOf="@+id/linhaNome">
 
         <LinearLayout
             android:orientation="vertical"
@@ -107,7 +149,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_weight="1"
-                android:layout_height="35dp" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:text="FOR"
@@ -116,8 +158,7 @@
                 android:gravity="center"
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
-                android:layout_height="35dp"
-                android:fontFamily="sans-serif" />
+                android:layout_height="35dp" />
 
             <TextView
                 android:text="DES"
@@ -126,8 +167,7 @@
                 android:gravity="center"
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
-                android:layout_height="35dp"
-                android:fontFamily="sans-serif" />
+                android:layout_height="35dp" />
 
             <TextView
                 android:text="CON"
@@ -136,8 +176,7 @@
                 android:gravity="center"
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
-                android:layout_height="35dp"
-                android:fontFamily="sans-serif" />
+                android:layout_height="35dp" />
 
             <TextView
                 android:text="INT"
@@ -146,8 +185,7 @@
                 android:gravity="center"
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
-                android:layout_height="35dp"
-                android:fontFamily="sans-serif" />
+                android:layout_height="35dp" />
 
             <TextView
                 android:text="SAB"
@@ -156,8 +194,7 @@
                 android:gravity="center"
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
-                android:layout_height="35dp"
-                android:fontFamily="sans-serif" />
+                android:layout_height="35dp" />
 
             <TextView
                 android:text="CAR"
@@ -166,8 +203,7 @@
                 android:gravity="center"
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
-                android:layout_height="35dp"
-                android:fontFamily="sans-serif" />
+                android:layout_height="35dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -179,12 +215,11 @@
             <TextView
                 android:text="Base"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/tagBase"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textAlignment="center"
-                android:fontFamily="sans-serif" />
+                android:textAlignment="center" />
 
             <EditText
                 android:inputType="numberDecimal"
@@ -257,12 +292,11 @@
             <TextView
                 android:text="Mod"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/tagMod"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textAlignment="center"
-                android:fontFamily="sans-serif" />
+                android:textAlignment="center" />
 
             <EditText
                 android:inputType="numberSigned"
@@ -339,16 +373,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/Misc"
         android:layout_alignTop="@+id/stats"
-        android:layout_toRightOf="@+id/linhaNome"
-        android:layout_toEndOf="@+id/linhaNome">
+        android:layout_toRightOf="@+id/stats"
+        android:layout_toEndOf="@+id/stats"
+        android:layout_marginLeft="38dp"
+        android:layout_marginStart="38dp">
 
         <TextView
             android:text="Dano"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tagDano"
-            android:textAlignment="center"
-            android:fontFamily="sans-serif" />
+            android:textAlignment="center" />
 
         <EditText
             android:layout_width="match_parent"
@@ -365,8 +400,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tagArmadura"
-            android:textAlignment="center"
-            android:fontFamily="sans-serif" />
+            android:textAlignment="center" />
 
         <EditText
             android:layout_width="match_parent"
@@ -394,8 +428,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tagAtual"
                 android:layout_weight="1"
-                android:textAlignment="center"
-                android:fontFamily="sans-serif" />
+                android:textAlignment="center" />
 
             <TextView
                 android:text="Total"
@@ -403,8 +436,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tagTotal"
                 android:layout_weight="1"
-                android:textAlignment="center"
-                android:fontFamily="sans-serif" />
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -418,8 +450,7 @@
                 android:id="@+id/tagPV"
                 android:layout_weight="1"
                 android:layout_width="25dp"
-                android:textAlignment="center"
-                android:fontFamily="sans-serif" />
+                android:textAlignment="center" />
 
             <EditText
                 android:layout_width="35dp"
@@ -449,8 +480,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tagCarga"
-            android:textAlignment="center"
-            android:fontFamily="sans-serif" />
+            android:textAlignment="center" />
 
         <EditText
             android:layout_width="match_parent"
@@ -463,49 +493,5 @@
             android:text="0" />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/stats"
-        android:layout_alignLeft="@+id/stats"
-        android:layout_alignStart="@+id/stats"
-        android:layout_marginTop="46dp"
-        android:id="@+id/Info">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/viewClasse"
-                android:textSize="20sp" />
-
-            <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/viewRaca"
-                android:layout_weight="1"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@color/colorPrimary"
-        android:id="@+id/viewImagem"
-        android:layout_weight="1"
-        android:layout_alignBottom="@+id/Info"
-        android:layout_alignLeft="@+id/Misc"
-        android:layout_alignStart="@+id/Misc" />
 
 </RelativeLayout>

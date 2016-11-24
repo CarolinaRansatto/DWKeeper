@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="layout.FichaTech"
+    android:weightSum="1">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".5">
+
+        <TextView
+            android:text="Movimentos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tagMovimentos"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".5">
+
+        <TextView
+            android:text="Equipamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tagEquipamento"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,9 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="layout.FichaTech"
-    android:orientation="vertical">
+    tools:context="layout.FichaTech">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -12,25 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tagMovimentos"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:fontFamily="sans-serif" />
 
-    <RadioGroup
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editMovimentos">
-
-    </RadioGroup>
+        android:layout_height="wrap_content" />
 
     <TextView
         android:text="Equipamento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tagEquipamento"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:fontFamily="sans-serif" />
 
-    <RadioGroup
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editEquipamento" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
