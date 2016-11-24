@@ -144,7 +144,7 @@ public class FichaStats extends Fragment {
             if (PackageManager.PERMISSION_GRANTED == permissionCheck){
                 Log.d("permission", "granted");
             }else {
-                
+
                 Log.d("permission", "denied");
             }
             Log.d("imagem", "Path on load: " + ficha.getImagePath());
