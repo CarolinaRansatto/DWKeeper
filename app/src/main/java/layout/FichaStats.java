@@ -1,14 +1,21 @@
 package layout;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.keeper.company.dwkeeper.DatabaseHelper;
 import com.keeper.company.dwkeeper.FichaHelper;
@@ -29,7 +36,7 @@ public class FichaStats extends Fragment {
     public EditText editNivel;
     public EditText editDano;
     public EditText editArmadura;
-    public EditText editPvTotal;
+    public EditText  editPvTotal;
     public EditText editPvAtual;
     public EditText editCarga;
     public EditText editModFor;
@@ -45,6 +52,8 @@ public class FichaStats extends Fragment {
     public EditText editModCar;
     public EditText editCar;
 
+
+    public ImageView img;
 
     DatabaseHelper bd;
     public FichaHelper ficha;
@@ -103,6 +112,7 @@ public class FichaStats extends Fragment {
         bd = new DatabaseHelper(this.getContext());
         ficha = bd.loadFicha(1);
 
+        img = (ImageView) getView().findViewById(R.id.viewImagem);
         editExp = (EditText) getView().findViewById(R.id.editExp);
         editNivel = (EditText) getView().findViewById(R.id.editNivel);
         editNome = (EditText) getView().findViewById(R.id.editNome);
@@ -111,6 +121,7 @@ public class FichaStats extends Fragment {
         editPvAtual = (EditText) getView().findViewById(R.id.editPvAtual);
         editPvTotal = (EditText) getView().findViewById(R.id.editPvTotal);
         editCarga = (EditText) getView().findViewById(R.id.editCarga);
+
 
         editModFor = (EditText) getView().findViewById(R.id.editModFor);
         editModCar = (EditText) getView().findViewById(R.id.editModCar);
@@ -125,6 +136,21 @@ public class FichaStats extends Fragment {
         editDes = (EditText) getView().findViewById(R.id.editDes);
         editInt = (EditText) getView().findViewById(R.id.editInt);
         editSab = (EditText) getView().findViewById(R.id.editSab);
+
+        //
+        if (ficha.getImagePath() != null){
+            int permissionCheck = ContextCompat.checkSelfPermission(this.getActivity(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE);
+            if (PackageManager.PERMISSION_GRANTED == permissionCheck){
+                Log.d("permission", "granted");
+            }else {
+                
+                Log.d("permission", "denied");
+            }
+            Log.d("imagem", "Path on load: " + ficha.getImagePath());
+            img.setImageURI(Uri.parse(ficha.getImagePath()));
+            img.setTag(ficha.getImagePath());
+        }
 
 
         editExp.setText("" + ficha.getExp());
@@ -151,6 +177,9 @@ public class FichaStats extends Fragment {
         editModInt.setText("" + ficha.getAtributo("int")[1]);
 
     }
+
+
+
 
 
 

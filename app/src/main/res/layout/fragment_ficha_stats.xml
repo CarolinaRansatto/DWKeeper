@@ -506,6 +506,7 @@
         android:layout_weight="1"
         android:layout_alignBottom="@+id/Info"
         android:layout_alignLeft="@+id/Misc"
-        android:layout_alignStart="@+id/Misc" />
+        android:layout_alignStart="@+id/Misc"
+        android:onClick="pickImage" />
 
 </RelativeLayout>

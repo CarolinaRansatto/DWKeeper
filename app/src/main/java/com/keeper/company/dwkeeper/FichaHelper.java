@@ -28,13 +28,20 @@ public class FichaHelper {
     private int dano;
     private int exp;
     private int armadura;
-
+    private String imagePath;
 
 
     public FichaHelper(){
 
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     public void setArmadura(int armadura) {
         this.armadura = armadura;

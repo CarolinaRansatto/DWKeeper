@@ -1,5 +1,7 @@
 package com.keeper.company.dwkeeper;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.net.URI;
@@ -47,7 +50,7 @@ public class NovaFicha extends AppCompatActivity
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
+    public final int PICK_IMAGE = 0;
     DatabaseHelper bd;
     private FichaStats fichaStats;
     private FichaDetalhes fichaDetalhes;
@@ -105,6 +108,8 @@ public class NovaFicha extends AppCompatActivity
         EditText editModCar =  fichaStats.editModCar;
         EditText editCar =  fichaStats.editCar;
 
+        ImageView img = fichaStats.img;
+
         // Monta string de atributos pra salvar no BD
 
         EditText [] editArray = {editFor, editModFor,
@@ -129,8 +134,44 @@ public class NovaFicha extends AppCompatActivity
         ficha.setPv_total(Integer.parseInt(pvTotal.getText().toString()));
         ficha.setCarga(Integer.parseInt(carga.getText().toString()));
         ficha.setAtributos(newAtributos);
+        if (img.getTag() != null){
+            ficha.setImagePath(img.getTag().toString());
+            Log.d("imagem", "Path on save: " + img.getTag().toString());
+
+        }
 
         bd.saveFicha(ficha, 1);
+        FichaHelper aux = bd.loadFicha(1);
+        img.setImageURI(Uri.parse(aux.getImagePath()));
+        Log.d("imagem", "Path on save/load at onPause: " + aux.getImagePath());
+    }
+
+    public void pickImage(View v){
+        Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        getIntent.setType("image/*");
+
+        Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickIntent.setType("image/*");
+
+        Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+
+        startActivityForResult(chooserIntent, PICK_IMAGE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
+            if (data == null) {
+                return;
+            }
+            String s = data.getData().toString();
+            Uri aux = Uri.parse(s);
+            fichaStats.img.setImageURI(aux);
+            fichaStats.img.setTag(s);
+            Log.d("imagem", "Path on set: " + s);
+        }
     }
 
     @Override

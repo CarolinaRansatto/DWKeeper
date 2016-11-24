@@ -147,6 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase bd = this.getWritableDatabase();
 
 
+
         FichaHelper ficha = new FichaHelper();
         ficha.setId(id);
 
@@ -202,6 +203,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //seta carga
         ficha.setCarga(cursorFicha.getInt(12));
 
+        // Seta IMG Path
+        ficha.setImagePath(cursorFicha.getString(13));
+
         return ficha;
     }
     
@@ -219,6 +223,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COL_10_6, ficha.getPv_atual());  // PV_ATUAL
         cv.put(COL_11_6, ficha.getPv_total());  // PV_TOTAL
         cv.put(COL_13_6, ficha.getCarga());  // CARGA
+        cv.put(COL_14_6, ficha.getImagePath());  // IMAGE PATH
 
         // não existia uma ficha previamente, então vamos criar uma
         if (ficha.getId() == 0){
@@ -235,7 +240,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String res = "";
         res += "" + atr[0];
         for (int i = 1; i < atr.length; i++){
-            res += "/" + atr[1];
+            res += "/" + atr[i];
         }
         return res;
     }
