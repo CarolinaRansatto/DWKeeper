@@ -23,9 +23,28 @@ import com.keeper.company.dwkeeper.R;
  * create an instance of this fragment.
  */
 public class FichaStats extends Fragment {
-    EditText editNome;
+
+    public EditText editNome;
     public EditText editExp;
-    EditText editNivel;
+    public EditText editNivel;
+    public EditText editDano;
+    public EditText editArmadura;
+    public EditText editPvTotal;
+    public EditText editPvAtual;
+    public EditText editCarga;
+    public EditText editModFor;
+    public EditText editFor;
+    public EditText editModDes;
+    public EditText editDes;
+    public EditText editModCon;
+    public EditText editCon;
+    public EditText editModInt;
+    public EditText editInt;
+    public EditText editModSab;
+    public EditText editSab;
+    public EditText editModCar;
+    public EditText editCar;
+
 
     DatabaseHelper bd;
     public FichaHelper ficha;
@@ -81,10 +100,56 @@ public class FichaStats extends Fragment {
     @Override
     public void onViewCreated(View v, Bundle b){
 
-//        bd = new DatabaseHelper(this.getContext());
-//        ficha = bd.loadFicha(1);
-//        editExp = (EditText) getView().findViewById(R.id.editExp);
-//        editExp.setText("" + ficha.getExp());
+        bd = new DatabaseHelper(this.getContext());
+        ficha = bd.loadFicha(1);
+
+        editExp = (EditText) getView().findViewById(R.id.editExp);
+        editNivel = (EditText) getView().findViewById(R.id.editNivel);
+        editNome = (EditText) getView().findViewById(R.id.editNome);
+        editDano = (EditText) getView().findViewById(R.id.editDano);
+        editArmadura = (EditText) getView().findViewById(R.id.editArm);
+        editPvAtual = (EditText) getView().findViewById(R.id.editPvAtual);
+        editPvTotal = (EditText) getView().findViewById(R.id.editPvTotal);
+        editCarga = (EditText) getView().findViewById(R.id.editCarga);
+
+        editModFor = (EditText) getView().findViewById(R.id.editModFor);
+        editModCar = (EditText) getView().findViewById(R.id.editModCar);
+        editModCon = (EditText) getView().findViewById(R.id.editModCon);
+        editModDes = (EditText) getView().findViewById(R.id.editModDes);
+        editModInt = (EditText) getView().findViewById(R.id.editModInt);
+        editModSab = (EditText) getView().findViewById(R.id.editModSab);
+
+        editFor = (EditText) getView().findViewById(R.id.editFor);
+        editCar = (EditText) getView().findViewById(R.id.editCar);
+        editCon = (EditText) getView().findViewById(R.id.editCon);
+        editDes = (EditText) getView().findViewById(R.id.editDes);
+        editInt = (EditText) getView().findViewById(R.id.editInt);
+        editSab = (EditText) getView().findViewById(R.id.editSab);
+
+
+        editExp.setText("" + ficha.getExp());
+        editNivel.setText("" + ficha.getNivel());
+        editNome.setText("" + ficha.getNome());
+        editDano.setText("" + ficha.getDano());
+        editArmadura.setText("" + ficha.getArmadura());
+        editPvAtual.setText("" + ficha.getPv_atual());
+        editPvTotal.setText("" + ficha.getPv_total());
+        editCarga.setText("" + ficha.getCarga());
+
+        editFor.setText("" + ficha.getAtributo("for")[0]);
+        editDes.setText("" + ficha.getAtributo("des")[0]);
+        editCar.setText("" + ficha.getAtributo("car")[0]);
+        editCon.setText("" + ficha.getAtributo("con")[0]);
+        editSab.setText("" + ficha.getAtributo("sab")[0]);
+        editInt.setText("" + ficha.getAtributo("int")[0]);
+
+        editModFor.setText("" + ficha.getAtributo("for")[1]);
+        editModDes.setText("" + ficha.getAtributo("des")[1]);
+        editModCar.setText("" + ficha.getAtributo("car")[1]);
+        editModCon.setText("" + ficha.getAtributo("con")[1]);
+        editModSab.setText("" + ficha.getAtributo("sab")[1]);
+        editModInt.setText("" + ficha.getAtributo("int")[1]);
+
     }
 
 

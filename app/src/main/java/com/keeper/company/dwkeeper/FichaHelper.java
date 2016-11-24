@@ -145,7 +145,7 @@ public class FichaHelper {
                 aux[0] = atributos[2];
                 aux[1] = atributos[3];
                 break;
-            case "cons":
+            case "con":
                 aux[0] = atributos[4];
                 aux[1] = atributos[5];
                 break;
@@ -165,6 +165,17 @@ public class FichaHelper {
 
         }
         return aux;
+    }
+
+    public String getAtributosString(){
+
+        String res = "";
+        res += atributos[0] + "";
+        for(int i = 1; i < atributos.length; i++){
+            res +=  "/" +  atributos[i];
+        }
+
+        return res;
     }
 
 
