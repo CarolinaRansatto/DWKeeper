@@ -74,19 +74,63 @@ public class NovaFicha extends AppCompatActivity
         //salva ficha
 
         super.onPause();
-        //bd = new DatabaseHelper(this);
-
-        //FichaStats fichaStats = (FichaStats) getSupportFragmentManager().findFragmentById(R.id.stats);
+        bd = new DatabaseHelper(this);
 
         if (fichaStats != null){
             Log.d("textTest", "fichaStatsnotnull");
         }else {
             Log.d("textTest", "fichaStatsnulll"); // fichas stats esta setndo null
         }
-        //FichaHelper ficha = fichaStats.ficha;
-        //EditText exp = fichaStats.editExp;
-        //ficha.setExp(Integer.parseInt(exp.getText().toString()));
-        //bd.saveFicha(ficha, 1);
+        FichaHelper ficha = fichaStats.ficha;
+
+        EditText exp = fichaStats.editExp;
+        EditText nivel = fichaStats.editNivel;
+        EditText nome = fichaStats.editNome;
+        EditText dano = fichaStats.editDano;
+        EditText armadura = fichaStats.editArmadura;
+        EditText pvTotal = fichaStats.editPvTotal;
+        EditText pvAtual = fichaStats.editPvAtual;
+        EditText carga = fichaStats.editCarga;
+
+        EditText editModFor = fichaStats.editModFor;
+        EditText editFor =  fichaStats.editFor;
+        EditText editModDes =  fichaStats.editModDes;
+        EditText editDes =  fichaStats.editDes;
+        EditText editModCon =  fichaStats.editModCon;
+        EditText editCon =  fichaStats.editCon;
+        EditText editModInt =  fichaStats.editModInt;
+        EditText editInt =  fichaStats.editInt;
+        EditText editModSab =  fichaStats.editModSab;
+        EditText editSab =  fichaStats.editSab;
+        EditText editModCar =  fichaStats.editModCar;
+        EditText editCar =  fichaStats.editCar;
+
+        // Monta string de atributos pra salvar no BD
+
+        EditText [] editArray = {editFor, editModFor,
+                editDes, editModDes,
+                editCon, editModCon,
+                editInt, editModInt,
+                editSab, editModSab,
+                editCar, editModCar};
+
+        int [] newAtributos = new int[12];
+        for (int i = 0; i < editArray.length; i++){
+            newAtributos[i] = Integer.parseInt(editArray[i].getText().toString());
+        }
+
+
+        ficha.setExp(Integer.parseInt(exp.getText().toString()));
+        ficha.setNivel(Integer.parseInt(nivel.getText().toString()));
+        ficha.setNome(nome.getText().toString());
+        ficha.setDano(Integer.parseInt(dano.getText().toString()));
+        ficha.setArmadura(Integer.parseInt(armadura.getText().toString()));
+        ficha.setPv_atual(Integer.parseInt(pvAtual.getText().toString()));
+        ficha.setPv_total(Integer.parseInt(pvTotal.getText().toString()));
+        ficha.setCarga(Integer.parseInt(carga.getText().toString()));
+        ficha.setAtributos(newAtributos);
+
+        bd.saveFicha(ficha, 1);
     }
 
     @Override

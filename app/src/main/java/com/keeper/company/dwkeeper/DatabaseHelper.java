@@ -134,7 +134,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL( QUERY_6 );
-        insertInitialDataFicha();
+
     }
 
     @Override
@@ -145,7 +145,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public FichaHelper loadFicha(int id){
         SQLiteDatabase bd = this.getWritableDatabase();
-        onCreate(bd);
+
+
         FichaHelper ficha = new FichaHelper();
         ficha.setId(id);
 
@@ -218,7 +219,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COL_10_6, ficha.getPv_atual());  // PV_ATUAL
         cv.put(COL_11_6, ficha.getPv_total());  // PV_TOTAL
         cv.put(COL_13_6, ficha.getCarga());  // CARGA
-
 
         // não existia uma ficha previamente, então vamos criar uma
         if (ficha.getId() == 0){
