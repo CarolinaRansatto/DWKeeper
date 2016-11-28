@@ -11,7 +11,63 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/linhaNome">
+        android:layout_marginTop="38dp"
+        android:id="@+id/Info"
+        android:layout_below="@+id/linhaNivel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Name"
+                android:ems="10"
+                android:id="@+id/editClasse"
+                android:layout_weight="1" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Name"
+                android:ems="10"
+                android:id="@+id/editRaca"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@color/colorPrimary"
+        android:id="@+id/viewImagem"
+        android:layout_weight="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="13dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linhaNome"
+        android:layout_alignTop="@+id/viewImagem"
+        android:layout_toRightOf="@+id/viewImagem"
+        android:layout_toEndOf="@+id/viewImagem"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp">
 
         <TextView
             android:text="Nome"
@@ -40,8 +96,27 @@
         android:layout_height="wrap_content"
         android:id="@+id/linhaNivel"
         android:layout_below="@+id/linhaNome"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignLeft="@+id/linhaNome"
+        android:layout_alignStart="@+id/linhaNome">
+
+        <TextView
+            android:text="Nível"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tagNivel"
+            android:layout_weight="1"
+            android:paddingRight="6dp" />
+
+        <EditText
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editNivel"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:text="1"
+            android:textAlignment="center" />
 
         <TextView
             android:text="EXP"
@@ -62,81 +137,140 @@
             android:text="1"
             android:textAlignment="center" />
 
-        <TextView
-            android:text="Nível"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tagNivel"
-            android:layout_weight="1"
-            android:paddingRight="6dp"
-            android:layout_marginLeft="70dp" />
-
-        <EditText
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editNivel"
-            android:layout_weight="1"
-            android:textSize="14sp"
-            android:text="1"
-            android:textAlignment="center" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
-        android:id="@+id/Info"
+        android:id="@+id/Misc"
         android:layout_below="@+id/linhaNivel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp">
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:text="Dano"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tagDano"
+            android:textAlignment="center" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editDano"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:text="0" />
+
+        <TextView
+            android:text="Armadura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tagArmadura"
+            android:textAlignment="center" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editArm"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:text="0" />
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
+                android:layout_width="25dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/viewClasse"
-                android:textSize="20sp" />
+                android:layout_weight="1" />
 
             <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
+                android:text="Atual"
+                android:layout_width="35dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/viewRaca"
+                android:id="@+id/tagAtual"
                 android:layout_weight="1"
-                android:textSize="16sp" />
+                android:textAlignment="center" />
 
+            <TextView
+                android:text="Total"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tagTotal"
+                android:layout_weight="1"
+                android:textAlignment="center" />
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@color/colorPrimary"
-        android:id="@+id/viewImagem"
-        android:layout_weight="1"
-        android:layout_alignBottom="@+id/stats"
-        android:layout_alignLeft="@+id/Info"
-        android:layout_alignStart="@+id/Info" />
+            <TextView
+                android:text="PV"
+                android:layout_height="wrap_content"
+                android:id="@+id/tagPV"
+                android:layout_weight="1"
+                android:layout_width="25dp"
+                android:textAlignment="center" />
+
+            <EditText
+                android:layout_width="35dp"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/editPvAtual"
+                android:layout_weight="1"
+                android:layout_height="35dp"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:text="0" />
+
+            <EditText
+                android:layout_width="35dp"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/editPvTotal"
+                android:layout_weight="1"
+                android:layout_height="35dp"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:text="0" />
+        </LinearLayout>
+
+        <TextView
+            android:text="Carga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tagCarga"
+            android:textAlignment="center" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editCarga"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:text="0" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/stats"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_centerVertical="true"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_alignBottom="@+id/Misc"
         android:layout_toRightOf="@+id/linhaNome"
         android:layout_toEndOf="@+id/linhaNome">
 
@@ -364,133 +498,6 @@
                 android:textSize="14sp"
                 android:textAlignment="center" />
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Misc"
-        android:layout_alignTop="@+id/stats"
-        android:layout_toRightOf="@+id/stats"
-        android:layout_toEndOf="@+id/stats"
-        android:layout_marginLeft="38dp"
-        android:layout_marginStart="38dp">
-
-        <TextView
-            android:text="Dano"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tagDano"
-            android:textAlignment="center" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editDano"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:text="0" />
-
-        <TextView
-            android:text="Armadura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tagArmadura"
-            android:textAlignment="center" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editArm"
-            android:textSize="14sp"
-            android:textAlignment="center"
-            android:text="0" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="25dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:text="Atual"
-                android:layout_width="35dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/tagAtual"
-                android:layout_weight="1"
-                android:textAlignment="center" />
-
-            <TextView
-                android:text="Total"
-                android:layout_width="35dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/tagTotal"
-                android:layout_weight="1"
-                android:textAlignment="center" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:text="PV"
-                android:layout_height="wrap_content"
-                android:id="@+id/tagPV"
-                android:layout_weight="1"
-                android:layout_width="25dp"
-                android:textAlignment="center" />
-
-            <EditText
-                android:layout_width="35dp"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/editPvAtual"
-                android:layout_weight="1"
-                android:layout_height="35dp"
-                android:textSize="14sp"
-                android:textAlignment="center"
-                android:text="0" />
-
-            <EditText
-                android:layout_width="35dp"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/editPvTotal"
-                android:layout_weight="1"
-                android:layout_height="35dp"
-                android:textSize="14sp"
-                android:textAlignment="center"
-                android:text="0" />
-        </LinearLayout>
-
-        <TextView
-            android:text="Carga"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tagCarga"
-            android:textAlignment="center" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editCarga"
-            android:textSize="14sp"
-            android:textAlignment="center"
-            android:text="0" />
 
     </LinearLayout>
 
