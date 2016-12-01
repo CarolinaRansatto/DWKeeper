@@ -137,7 +137,7 @@ public class NovaFicha extends AppCompatActivity
         ficha.setAtributos(newAtributos);
         if (img.getTag() != null){
             ficha.setImagePath(img.getTag().toString());
-            Log.d("imagem", "Path on save: " + img.getTag().toString());
+         //   Log.d("imagem", "Path on save: " + img.getTag().toString());
 
         }
 
@@ -147,7 +147,7 @@ public class NovaFicha extends AppCompatActivity
             img.setImageURI(Uri.parse(aux.getImagePath()));
         }
 
-        Log.d("imagem", "Path on save/load at onPause: " + aux.getImagePath());
+       // Log.d("imagem", "Path on save/load at onPause: " + aux.getImagePath());
     }
 
     public void pickImage(View v){

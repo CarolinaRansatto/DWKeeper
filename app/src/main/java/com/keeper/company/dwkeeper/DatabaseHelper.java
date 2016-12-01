@@ -147,15 +147,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public FichaHelper loadFicha(int id){
         SQLiteDatabase bd = this.getWritableDatabase();
 
-
-
-
-
-
         FichaHelper ficha = new FichaHelper();
         ficha.setId(id);
 
         Cursor cursorFicha = bd.rawQuery("select * FROM " + TABLE_NAME_6 + " WHERE " + COL_1_6 + " = " + id + " ;", null);
+
+        if (cursorFicha.getCount() == 0){
+            insertInitialDataFicha();
+            cursorFicha = bd.rawQuery("select * FROM " + TABLE_NAME_6 + " WHERE " + COL_1_6 + " = " + id + " ;", null);
+        }
+
         //Cursor cursorClasse = bd.rawQuery("select " + COL_2_3 + " FROM " + TABLE_NAME_3 + "WHERE " + COL_1_3 + " = " + cursorFicha.getInt(1), null);
         //Cursor cursorRaça = bd.rawQuery("select " + COL_2_4 + " FROM " + TABLE_NAME_4 + "WHERE " + COL_1_4 + " = " + cursorFicha.getInt(2), null);
         //Cursor cursorAlinhamento = bd.rawQuery("select " + COL_2_5 + " FROM " + TABLE_NAME_5 + "WHERE " + COL_1_5 + " = " + cursorFicha.getInt(11), null);
@@ -229,7 +230,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COL_10_6, ficha.getPv_atual());  // PV_ATUAL
         cv.put(COL_11_6, ficha.getPv_total());  // PV_TOTAL
         cv.put(COL_13_6, ficha.getCarga());  // CARGA
-        Log.d("banco", "Carga on save: " + ficha.getCarga());
         cv.put(COL_14_6, ficha.getImagePath());  // IMAGE PATH
 
         // não existia uma ficha previamente, então vamos criar uma
@@ -240,6 +240,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             bd.update(TABLE_NAME_6, cv, COL_1_6 + "=" + id, null);
         //}
+
+    }
+
+    public void insertInitialDataFicha(){
+        SQLiteDatabase db = this.getWritableDatabase ();
+        ContentValues contentValues = new ContentValues();
+
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_6);
+        db.execSQL( QUERY_6 );
+
+        // Todos os dados necessários
+        //
+        contentValues.put(COL_1_6, 1);  // ID
+        contentValues.put(COL_5_6, "teste");  // NOME
+        contentValues.put(COL_4_6, "1/1/1/1/1/1/1/1/1/1/1/1");  // ATRIBUTOS
+        contentValues.put(COL_6_6, 666);  // EXP
+        contentValues.put(COL_7_6, 10);  // NIVEL
+        contentValues.put(COL_8_6, 12);  // DANO
+        contentValues.put(COL_9_6, 7);  // ARMADURA
+        contentValues.put(COL_10_6, 19);  // PV_ATUAL
+        contentValues.put(COL_11_6, 21);  // PV_TOTAL
+        contentValues.put(COL_13_6, 3);  // CARGA
+        db.insert(TABLE_NAME_6, null, contentValues);
 
     }
 
@@ -288,28 +311,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public void insertInitialDataFicha(){
-        SQLiteDatabase db = this.getWritableDatabase ();
-        ContentValues contentValues = new ContentValues();
 
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_6);
-        db.execSQL( QUERY_6 );
-
-        // Todos os dados necessários
-        //
-        contentValues.put(COL_1_6, 1);  // ID
-        contentValues.put(COL_5_6, "teste");  // NOME
-        contentValues.put(COL_4_6, "1/1/1/1/1/1/1/1/1/1/1/1");  // ATRIBUTOS
-        contentValues.put(COL_6_6, 666);  // EXP
-        contentValues.put(COL_7_6, 10);  // NIVEL
-        contentValues.put(COL_8_6, 12);  // DANO
-        contentValues.put(COL_9_6, 7);  // ARMADURA
-        contentValues.put(COL_10_6, 19);  // PV_ATUAL
-        contentValues.put(COL_11_6, 21);  // PV_TOTAL
-        contentValues.put(COL_13_6, 3);  // CARGA
-        db.insert(TABLE_NAME_6, null, contentValues);
-
-    }
 
     public Cursor viewAllData(){
         SQLiteDatabase db = this.getWritableDatabase ();
