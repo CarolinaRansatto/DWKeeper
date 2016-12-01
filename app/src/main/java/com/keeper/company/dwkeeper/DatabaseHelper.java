@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -89,7 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //ficha
     public static final String QUERY_6 = "CREATE TABLE " + TABLE_NAME_6 +
-            " (" + COL_1_6 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            " (" + COL_1_6 + " INTEGER PRIMARY KEY, " +
             COL_2_6 +" VARCHAR(8), " + // CLASSE
             COL_3_6 +" VARCHAR(8), " + // RAÇA
             COL_4_6 + " CHAR(20), " + // atributos( EX: 10/2/8/3/8/6/5/3/2/9)
@@ -145,6 +146,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public FichaHelper loadFicha(int id){
         SQLiteDatabase bd = this.getWritableDatabase();
+
+
+
 
 
 
@@ -206,10 +210,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Seta IMG Path
         ficha.setImagePath(cursorFicha.getString(13));
 
+
         return ficha;
     }
     
     public void saveFicha(FichaHelper ficha, int id){
+
         SQLiteDatabase bd = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -223,16 +229,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COL_10_6, ficha.getPv_atual());  // PV_ATUAL
         cv.put(COL_11_6, ficha.getPv_total());  // PV_TOTAL
         cv.put(COL_13_6, ficha.getCarga());  // CARGA
+        Log.d("banco", "Carga on save: " + ficha.getCarga());
         cv.put(COL_14_6, ficha.getImagePath());  // IMAGE PATH
 
         // não existia uma ficha previamente, então vamos criar uma
-        if (ficha.getId() == 0){
+        //if (ficha.getId() == 0){
             // ta faltando o id. temos que checar a funcionalidade do auto_increment aqui
-            bd.insert(TABLE_NAME_6, null, cv);
-        }else {
-            cv.put(COL_1_6, ficha.getId());  // ID
+         //   bd.insert(TABLE_NAME_6, null, cv);
+        //}else {
+
             bd.update(TABLE_NAME_6, cv, COL_1_6 + "=" + id, null);
-        }
+        //}
 
     }
 
@@ -290,7 +297,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Todos os dados necessários
         //
-        // contentValues.put(COL_1_6, 1);  // ID
+        contentValues.put(COL_1_6, 1);  // ID
         contentValues.put(COL_5_6, "teste");  // NOME
         contentValues.put(COL_4_6, "1/1/1/1/1/1/1/1/1/1/1/1");  // ATRIBUTOS
         contentValues.put(COL_6_6, 666);  // EXP

@@ -107,7 +107,7 @@ public class FichaStats extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View v, Bundle b){
+    public void onViewCreated(View v, Bundle b) {
 
         bd = new DatabaseHelper(this.getContext());
         ficha = bd.loadFicha(1);
@@ -138,15 +138,64 @@ public class FichaStats extends Fragment {
         editSab = (EditText) getView().findViewById(R.id.editSab);
 
         //
-        if (ficha.getImagePath() != null){
-            int permissionCheck = ContextCompat.checkSelfPermission(this.getActivity(),
-                    Manifest.permission.READ_EXTERNAL_STORAGE);
-            if (PackageManager.PERMISSION_GRANTED == permissionCheck){
-                Log.d("permission", "granted");
-            }else {
+        int permissionCheck = ContextCompat.checkSelfPermission(this.getActivity(),
+                Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (PackageManager.PERMISSION_GRANTED == permissionCheck) {
+            Log.d("permission", "permission granted");
+        } else {
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this.getActivity(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                Log.d("permission", "shouldShow");
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
 
-                Log.d("permission", "denied");
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this.getActivity(),
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        1);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
             }
+        Log.d("permission", "permission denie");
+    }
+
+        int permissionCheckWrite = ContextCompat.checkSelfPermission(this.getActivity(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (PackageManager.PERMISSION_GRANTED == permissionCheck) {
+            Log.d("permission", "permission write granted");
+        } else {
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this.getActivity(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                Log.d("permission", "shouldShow write");
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this.getActivity(),
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        1);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+            Log.d("permission", "permission write denied");
+        }
+        Log.d("permission", "test");
+        if (ficha.getImagePath() != null){
+
             Log.d("imagem", "Path on load: " + ficha.getImagePath());
             img.setImageURI(Uri.parse(ficha.getImagePath()));
             img.setTag(ficha.getImagePath());
@@ -175,6 +224,8 @@ public class FichaStats extends Fragment {
         editModCon.setText("" + ficha.getAtributo("con")[1]);
         editModSab.setText("" + ficha.getAtributo("sab")[1]);
         editModInt.setText("" + ficha.getAtributo("int")[1]);
+
+
 
     }
 

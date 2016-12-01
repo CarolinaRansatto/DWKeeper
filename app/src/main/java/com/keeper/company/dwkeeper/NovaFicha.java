@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -141,8 +142,11 @@ public class NovaFicha extends AppCompatActivity
         }
 
         bd.saveFicha(ficha, 1);
-        FichaHelper aux = bd.loadFicha(1);
-        img.setImageURI(Uri.parse(aux.getImagePath()));
+        FichaHelper aux = bd.loadFicha(1); // não tá chegando
+        if (aux.getImagePath() != null) {
+            img.setImageURI(Uri.parse(aux.getImagePath()));
+        }
+
         Log.d("imagem", "Path on save/load at onPause: " + aux.getImagePath());
     }
 
@@ -200,7 +204,6 @@ public class NovaFicha extends AppCompatActivity
     public void onFragmentInteraction (Uri uri) {
 
     }
-
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
