@@ -90,7 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //ficha
     public static final String QUERY_6 = "CREATE TABLE " + TABLE_NAME_6 +
-            " (" + COL_1_6 + " INTEGER PRIMARY KEY, " +
+            " (" + COL_1_6 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COL_2_6 +" VARCHAR(8), " + // CLASSE
             COL_3_6 +" VARCHAR(8), " + // RAÇA
             COL_4_6 + " CHAR(20), " + // atributos( EX: 10/2/8/3/8/6/5/3/2/9)
@@ -233,13 +233,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COL_14_6, ficha.getImagePath());  // IMAGE PATH
 
         // não existia uma ficha previamente, então vamos criar uma
-        //if (ficha.getId() == 0){
-            // ta faltando o id. temos que checar a funcionalidade do auto_increment aqui
-         //   bd.insert(TABLE_NAME_6, null, cv);
-        //}else {
-
+        if (ficha.getId() == 0){
+            // ta faltando o id temos que checar a funcionalidade do auto_increment aqui
+            bd.insert(TABLE_NAME_6, null, cv);
+        }else {
             bd.update(TABLE_NAME_6, cv, COL_1_6 + "=" + id, null);
-        //}
+        }
 
     }
 
@@ -251,17 +250,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL( QUERY_6 );
 
         // Todos os dados necessários
-        //
-        contentValues.put(COL_1_6, 1);  // ID
-        contentValues.put(COL_5_6, "teste");  // NOME
-        contentValues.put(COL_4_6, "1/1/1/1/1/1/1/1/1/1/1/1");  // ATRIBUTOS
-        contentValues.put(COL_6_6, 666);  // EXP
-        contentValues.put(COL_7_6, 10);  // NIVEL
-        contentValues.put(COL_8_6, 12);  // DANO
-        contentValues.put(COL_9_6, 7);  // ARMADURA
-        contentValues.put(COL_10_6, 19);  // PV_ATUAL
-        contentValues.put(COL_11_6, 21);  // PV_TOTAL
-        contentValues.put(COL_13_6, 3);  // CARGA
+
+        //contentValues.put(COL_1_6, 1);  // ID -> não é necessário com autoincrement
+        contentValues.put(COL_5_6, "Nome");  // NOME
+        contentValues.put(COL_4_6, "0/0/0/0/0/0/0/0/0/0/0/0");  // ATRIBUTOS
+        contentValues.put(COL_6_6, 0);  // EXP
+        contentValues.put(COL_7_6, 0);  // NIVEL
+        contentValues.put(COL_8_6, 0);  // DANO
+        contentValues.put(COL_9_6, 0);  // ARMADURA
+        contentValues.put(COL_10_6, 0);  // PV_ATUAL
+        contentValues.put(COL_11_6, 0);  // PV_TOTAL
+        contentValues.put(COL_13_6, 0);  // CARGA
         db.insert(TABLE_NAME_6, null, contentValues);
 
     }

@@ -15,8 +15,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Dados" />
         <activity
-            android:name=".NovaFicha"
-            android:label="NovaFicha"
+            android:name=".SelecaoFicha"
+            android:label="SelecaoFicha"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SelecaoFicha"></activity>
+        <activity android:name=".NovaFicha"></activity>
     </application>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>

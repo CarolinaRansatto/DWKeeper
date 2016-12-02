@@ -141,7 +141,7 @@ public class NovaFicha extends AppCompatActivity
 
         }
 
-        bd.saveFicha(ficha, 1);
+        bd.saveFicha(ficha, ficha.getId());
         FichaHelper aux = bd.loadFicha(1); // não tá chegando
         if (aux.getImagePath() != null) {
             img.setImageURI(Uri.parse(aux.getImagePath()));
