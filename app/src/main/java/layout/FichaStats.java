@@ -57,6 +57,7 @@ public class FichaStats extends Fragment {
 
     DatabaseHelper bd;
     public FichaHelper ficha;
+
     /// / TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     //private static final String ARG_PARAM1 = "param1";
@@ -163,11 +164,9 @@ public class FichaStats extends Fragment {
                 // app-defined int constant. The callback method gets the
                 // result of the request.
             }
-        Log.d("permission", "permission denie");
+        Log.d("permission", "permission denied");
     }
 
-        int permissionCheckWrite = ContextCompat.checkSelfPermission(this.getActivity(),
-                Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (PackageManager.PERMISSION_GRANTED == permissionCheck) {
             Log.d("permission", "permission write granted");
         } else {

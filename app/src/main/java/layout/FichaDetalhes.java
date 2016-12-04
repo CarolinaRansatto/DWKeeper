@@ -22,6 +22,15 @@ import com.keeper.company.dwkeeper.R;
  * create an instance of this fragment.
  */
 public class FichaDetalhes extends Fragment {
+
+    public EditText editAlinhamento;
+    public EditText editAparencia;
+    public EditText editBackground;
+    public EditText editVinculos;
+
+    DatabaseHelper bd;
+    public FichaHelper ficha;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
@@ -60,6 +69,23 @@ public class FichaDetalhes extends Fragment {
         return inflater.inflate(R.layout.fragment_ficha_detalhes, container, false);
     }
 
+    @Override
+    public void onViewCreated(View v, Bundle b){
+
+        bd = new DatabaseHelper(this.getContext());
+        ficha = bd.loadFicha(1);
+
+        editAparencia = (EditText) getActivity().findViewById(R.id.editAparencia);
+        editBackground = (EditText) getActivity().findViewById(R.id.editBackground);
+        editVinculos = (EditText) getActivity().findViewById(R.id.editVinculos);
+        editAlinhamento = (EditText) getActivity().findViewById(R.id.editAlinhamento);
+
+        editAlinhamento.setText("" + ficha.getAlinhamento());
+        editAparencia.setText("" + ficha.getAparencia());
+        editBackground.setText("" + ficha.getBackground());
+        editVinculos.setText("" + ficha.getVinculos());
+
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

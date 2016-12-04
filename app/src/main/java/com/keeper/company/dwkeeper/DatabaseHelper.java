@@ -53,6 +53,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_12_6 = "ALINHAMENTO";
     public static final String COL_13_6 = "CARGA";
     public static final String COL_14_6 = "IMG_PATH";
+    public static final String COL_15_6 = "APARENCIA";
+    public static final String COL_16_6 = "BACKGROUND";
+    public static final String COL_17_6 = "VINCULOS";
     public static final String COL_1_7 = "CLASSE_FK";
     public static final String COL_2_7 = "RAÇA_FK";
     public static final String COL_3_7 = "BENEFICIO";
@@ -103,7 +106,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COL_11_6 + " SMALLINT, " + // PV TOTAL
             COL_12_6 + " VARCHAR(100), " + // ALINHAMENTO
             COL_13_6 + " INTEGER, " + // CARGA
-            COL_14_6 + " VARCHAR(255)); ";  // IMG_PATH
+            COL_14_6 + " VARCHAR(255), " + // IMG_PATH
+            COL_15_6 + " VARCHAR(255), " + // APARENCIA
+            COL_16_6 + " VARCHAR(255), " +// BACKGROUND
+            COL_17_6 + " VARCHAR(255)); ";  // VINCULOS
 
 
     // pode_ser_de
@@ -211,6 +217,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Seta IMG Path
         ficha.setImagePath(cursorFicha.getString(13));
 
+        // Seta aparencia
+        ficha.setAparencia(cursorFicha.getString(14));
+
+        // Seta bg
+        ficha.setBackground(cursorFicha.getString(15));
+
+        // Seta vinculos
+        ficha.setVinculos(cursorFicha.getString(16));
 
         return ficha;
     }
@@ -229,8 +243,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COL_9_6, ficha.getArmadura());  // ARMADURA
         cv.put(COL_10_6, ficha.getPv_atual());  // PV_ATUAL
         cv.put(COL_11_6, ficha.getPv_total());  // PV_TOTAL
+        cv.put(COL_12_6, ficha.getAlinhamento());  // ALINHAMENTO
         cv.put(COL_13_6, ficha.getCarga());  // CARGA
         cv.put(COL_14_6, ficha.getImagePath());  // IMAGE PATH
+        cv.put(COL_15_6, ficha.getAparencia());  // APARENCIA
+        cv.put(COL_16_6, ficha.getBackground());  // BACKGROUND
+        cv.put(COL_17_6, ficha.getVinculos());  // VINCULOS
 
         // não existia uma ficha previamente, então vamos criar uma
         if (ficha.getId() == 0){
@@ -260,7 +278,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_9_6, 0);  // ARMADURA
         contentValues.put(COL_10_6, 0);  // PV_ATUAL
         contentValues.put(COL_11_6, 0);  // PV_TOTAL
+        contentValues.put(COL_12_6, " ");  // alinhamento
         contentValues.put(COL_13_6, 0);  // CARGA
+        contentValues.put(COL_15_6, " ");  // APARENCIA
+        contentValues.put(COL_16_6, " ");  // background
+        contentValues.put(COL_17_6, " ");  // vinculos
+
         db.insert(TABLE_NAME_6, null, contentValues);
 
     }
@@ -310,8 +333,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-
-
     public Cursor viewAllData(){
         SQLiteDatabase db = this.getWritableDatabase ();
         Cursor res = db.rawQuery("select * from " + TABLE_NAME_1, null);
@@ -336,18 +357,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    /**private String getClassName(int classId){
-        SQLiteDatabase bd = getWritableDatabase();
-        Cursor cursor = bd.rawQuery("SELECT " + COL_1_3 + " FROM " + TABLE_NAME_3 + " WHERE " + COL_1_3 + " = " + classId + ";", null);
-        cursor.moveToNext();
-        return cursor.getString(0);
-    }**/
-
-    /**private String getRaçaName(int raçaId){
-        SQLiteDatabase bd = getWritableDatabase();
-        Cursor cursor = bd.rawQuery("SELECT " + COL_2_4 + " FROM " + TABLE_NAME_4 + " WHERE " + COL_1_4 + " = " + raçaId + ";", null);
-        cursor.moveToNext();
-        return cursor.getString(0);
-    }**/
 
 }

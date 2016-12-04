@@ -111,6 +111,11 @@ public class NovaFicha extends AppCompatActivity
 
         ImageView img = fichaStats.img;
 
+        EditText editAparencia = fichaDetalhes.editAparencia;
+        EditText editBackground = fichaDetalhes.editBackground;
+        EditText editVinculos = fichaDetalhes.editVinculos;
+        EditText editAlinhamento = fichaDetalhes.editAlinhamento;
+
         // Monta string de atributos pra salvar no BD
 
         EditText [] editArray = {editFor, editModFor,
@@ -125,7 +130,10 @@ public class NovaFicha extends AppCompatActivity
             newAtributos[i] = Integer.parseInt(editArray[i].getText().toString());
         }
 
-
+        ficha.setAlinhamento(editAlinhamento.getText().toString());
+        ficha.setAparencia(editAparencia.getText().toString());
+        ficha.setBackground(editBackground.getText().toString());
+        ficha.setVinculos(editVinculos.getText().toString());
         ficha.setExp(Integer.parseInt(exp.getText().toString()));
         ficha.setNivel(Integer.parseInt(nivel.getText().toString()));
         ficha.setNome(nome.getText().toString());
@@ -135,6 +143,7 @@ public class NovaFicha extends AppCompatActivity
         ficha.setPv_total(Integer.parseInt(pvTotal.getText().toString()));
         ficha.setCarga(Integer.parseInt(carga.getText().toString()));
         ficha.setAtributos(newAtributos);
+
         if (img.getTag() != null){
             ficha.setImagePath(img.getTag().toString());
          //   Log.d("imagem", "Path on save: " + img.getTag().toString());

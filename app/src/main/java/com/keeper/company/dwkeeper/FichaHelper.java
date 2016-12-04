@@ -29,10 +29,37 @@ public class FichaHelper {
     private int exp;
     private int armadura;
     private String imagePath;
+    private String background;
+    private String aparencia;
+    private String vinculos;
 
 
     public FichaHelper(){
 
+    }
+
+    public String getVinculos() {
+        return vinculos;
+    }
+
+    public void setVinculos(String vinculos) {
+        this.vinculos = vinculos;
+    }
+
+    public String getAparencia() {
+        return aparencia;
+    }
+
+    public void setAparencia(String aparencia) {
+        this.aparencia = aparencia;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
     }
 
     public String getImagePath() {
@@ -168,8 +195,6 @@ public class FichaHelper {
                 aux[0] = atributos[10];
                 aux[1] = atributos[11];
                 break;
-        
-
         }
         return aux;
     }
