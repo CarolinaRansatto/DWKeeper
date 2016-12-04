@@ -101,15 +101,6 @@
         android:layout_marginStart="14dp"
         android:id="@+id/ViewNivel" />
 
-    <TextView
-        android:text="FOR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TagExp"
-        android:layout_alignLeft="@+id/TagNome"
-        android:layout_alignStart="@+id/TagNome"
-        android:layout_marginTop="47dp"
-        android:id="@+id/TagFor" />
 
     <TextView
         android:text="DES"
@@ -118,7 +109,10 @@
         android:id="@+id/TagDes"
         android:layout_below="@+id/TagFor"
         android:layout_alignLeft="@+id/TagFor"
-        android:layout_alignStart="@+id/TagFor" />
+        android:layout_alignStart="@+id/TagFor"
+
+        android:textColor="#FFFFFF"
+        android:background="@drawable/text_view_rounded" />
 
     <TextView
         android:text="CON"
@@ -127,7 +121,9 @@
         android:layout_below="@+id/TagDes"
         android:layout_alignLeft="@+id/TagDes"
         android:layout_alignStart="@+id/TagDes"
-        android:id="@+id/TagCon" />
+        android:id="@+id/TagCon"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/text_view_rounded" />
 
     <TextView
         android:text="INT"
@@ -136,7 +132,9 @@
         android:layout_below="@+id/TagCon"
         android:layout_alignLeft="@+id/TagCon"
         android:layout_alignStart="@+id/TagCon"
-        android:id="@+id/TagInt" />
+        android:id="@+id/TagInt"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/text_view_rounded" />
 
     <TextView
         android:text="SAB"
@@ -145,7 +143,9 @@
         android:layout_below="@+id/TagInt"
         android:layout_alignLeft="@+id/TagInt"
         android:layout_alignStart="@+id/TagInt"
-        android:id="@+id/TagSab" />
+        android:id="@+id/TagSab"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/text_view_rounded" />
 
     <TextView
         android:text="CAR"
@@ -154,7 +154,9 @@
         android:layout_below="@+id/TagSab"
         android:layout_alignLeft="@+id/TagSab"
         android:layout_alignStart="@+id/TagSab"
-        android:id="@+id/TagCar" />
+        android:id="@+id/TagCar"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/text_view_rounded" />
 
     <TextView
         android:text="Mod"
@@ -417,17 +419,6 @@
         android:layout_alignEnd="@+id/TagCarga" />
 
     <TextView
-        android:text="Classe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/TagPV"
-        android:layout_alignLeft="@+id/TagCar"
-        android:layout_alignStart="@+id/TagCar"
-        android:id="@+id/ViewClasse"
-        android:layout_alignRight="@+id/ViewCarMod"
-        android:layout_alignEnd="@+id/ViewCarMod" />
-
-    <TextView
         android:text="Raça"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -435,5 +426,28 @@
         android:layout_alignLeft="@+id/ViewClasse"
         android:layout_alignStart="@+id/ViewClasse"
         android:id="@+id/ViewRaça" />
+
+    <TextView
+        android:text="Classe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ViewClasse"
+        android:layout_below="@+id/TagCar"
+        android:layout_toLeftOf="@+id/TagNivel"
+        android:layout_toStartOf="@+id/TagNivel" />
+
+    <TextView
+        android:text="FOR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="49dp"
+        android:id="@+id/TagFor"
+
+        android:textColor="#FFFFFF"
+        android:background="@drawable/text_view_rounded"
+
+        android:layout_below="@+id/TagExp"
+        android:layout_alignLeft="@+id/TagNome"
+        android:layout_alignStart="@+id/TagNome" />
 
 </RelativeLayout>

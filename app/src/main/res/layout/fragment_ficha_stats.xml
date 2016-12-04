@@ -23,7 +23,9 @@
             android:id="@+id/tagNivel"
             android:layout_weight="1"
             android:paddingRight="6dp"
-            android:fontFamily="sans-serif" />
+            android:fontFamily="sans-serif"
+
+            android:textStyle="bold"/>
 
         <EditText
             android:layout_width="35dp"
@@ -43,7 +45,9 @@
             android:id="@+id/tagExp"
             android:layout_weight="1"
             android:paddingRight="6dp"
-            android:fontFamily="sans-serif" />
+            android:fontFamily="sans-serif"
+
+            android:textStyle="bold"/>
 
         <EditText
             android:layout_width="35dp"
@@ -91,7 +95,9 @@
             android:layout_weight="1"
             android:textSize="16sp"
             android:paddingRight="6dp"
-            android:fontFamily="sans-serif" />
+            android:fontFamily="sans-serif"
+
+            android:textStyle="bold"/>
 
         <EditText
             android:layout_width="wrap_content"
@@ -110,10 +116,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Info"
+        android:layout_marginTop="29dp"
         android:layout_below="@+id/viewImagem"
         android:layout_alignLeft="@+id/viewImagem"
-        android:layout_alignStart="@+id/viewImagem"
-        android:layout_marginTop="13dp">
+        android:layout_alignStart="@+id/viewImagem">
 
         <LinearLayout
             android:orientation="vertical"
@@ -142,145 +148,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Misc"
-        android:layout_below="@+id/Info"
-        android:layout_toLeftOf="@+id/linhaNivel"
-        android:layout_toStartOf="@+id/linhaNivel"
-        android:layout_marginTop="24dp">
-
-        <TextView
-            android:text="Dano"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tagDano"
-            android:textAlignment="center"
-            android:fontFamily="sans-serif" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editDano"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:text="0" />
-
-        <TextView
-            android:text="Armadura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tagArmadura"
-            android:textAlignment="center"
-            android:fontFamily="sans-serif" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editArm"
-            android:textSize="14sp"
-            android:textAlignment="center"
-            android:text="0" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="25dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:text="Atual"
-                android:layout_width="35dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/tagAtual"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:fontFamily="sans-serif" />
-
-            <TextView
-                android:text="Total"
-                android:layout_width="35dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/tagTotal"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:fontFamily="sans-serif" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:text="PV"
-                android:layout_height="wrap_content"
-                android:id="@+id/tagPV"
-                android:layout_weight="1"
-                android:layout_width="25dp"
-                android:textAlignment="center"
-                android:fontFamily="sans-serif" />
-
-            <EditText
-                android:layout_width="35dp"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/editPvAtual"
-                android:layout_weight="1"
-                android:layout_height="35dp"
-                android:textSize="14sp"
-                android:textAlignment="center"
-                android:text="0" />
-
-            <EditText
-                android:layout_width="35dp"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/editPvTotal"
-                android:layout_weight="1"
-                android:layout_height="35dp"
-                android:textSize="14sp"
-                android:textAlignment="center"
-                android:text="0" />
-        </LinearLayout>
-
-        <TextView
-            android:text="Carga"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tagCarga"
-            android:textAlignment="center"
-            android:fontFamily="sans-serif" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editCarga"
-            android:textSize="14sp"
-            android:textAlignment="center"
-            android:text="0" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/stats"
-        android:layout_marginRight="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_alignBottom="@+id/Misc"
+        android:layout_marginRight="21dp"
+        android:layout_marginEnd="21dp"
+        android:layout_alignTop="@+id/Misc"
         android:layout_alignRight="@+id/linhaNome"
         android:layout_alignEnd="@+id/linhaNome">
 
@@ -303,7 +177,11 @@
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
                 android:layout_height="35dp"
-                android:fontFamily="sans-serif" />
+                android:fontFamily="sans-serif"
+
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/text_view_rounded" />
 
             <TextView
                 android:text="DES"
@@ -313,7 +191,11 @@
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
                 android:layout_height="35dp"
-                android:fontFamily="sans-serif" />
+                android:fontFamily="sans-serif"
+
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/text_view_rounded"/>
 
             <TextView
                 android:text="CON"
@@ -323,7 +205,11 @@
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
                 android:layout_height="35dp"
-                android:fontFamily="sans-serif" />
+                android:fontFamily="sans-serif"
+
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/text_view_rounded"/>
 
             <TextView
                 android:text="INT"
@@ -333,7 +219,11 @@
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
                 android:layout_height="35dp"
-                android:fontFamily="sans-serif" />
+                android:fontFamily="sans-serif"
+
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/text_view_rounded"/>
 
             <TextView
                 android:text="SAB"
@@ -343,7 +233,11 @@
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
                 android:layout_height="35dp"
-                android:fontFamily="sans-serif" />
+                android:fontFamily="sans-serif"
+
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/text_view_rounded"/>
 
             <TextView
                 android:text="CAR"
@@ -353,7 +247,11 @@
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
                 android:layout_height="35dp"
-                android:fontFamily="sans-serif" />
+                android:fontFamily="sans-serif"
+
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/text_view_rounded"/>
         </LinearLayout>
 
         <LinearLayout
@@ -370,7 +268,9 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:fontFamily="sans-serif" />
+                android:fontFamily="sans-serif"
+
+                android:textStyle="bold"/>
 
             <EditText
                 android:inputType="numberDecimal"
@@ -381,7 +281,11 @@
                 android:layout_height="35dp"
                 android:layout_width="35dp"
                 android:text="0"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"
+                />
 
             <EditText
                 android:inputType="numberSigned"
@@ -390,7 +294,11 @@
                 android:textSize="14sp"
                 android:layout_height="35dp"
                 android:layout_width="35dp"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"
+                android:text="0" />
 
             <EditText
                 android:inputType="number"
@@ -400,7 +308,11 @@
                 android:textSize="14sp"
                 android:layout_height="35dp"
                 android:layout_width="35dp"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"
+                android:text="0" />
 
             <EditText
                 android:inputType="number"
@@ -410,7 +322,11 @@
                 android:textSize="14sp"
                 android:layout_height="35dp"
                 android:layout_width="35dp"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"
+                android:text="0" />
 
             <EditText
                 android:inputType="number"
@@ -420,7 +336,11 @@
                 android:textSize="14sp"
                 android:layout_height="35dp"
                 android:layout_width="35dp"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"
+                android:text="0" />
 
             <EditText
                 android:inputType="number"
@@ -430,7 +350,11 @@
                 android:textSize="14sp"
                 android:layout_height="35dp"
                 android:layout_width="35dp"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"
+                android:text="0" />
 
         </LinearLayout>
 
@@ -448,7 +372,9 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:fontFamily="sans-serif" />
+                android:fontFamily="sans-serif"
+
+                android:textStyle="bold"/>
 
             <EditText
                 android:inputType="numberSigned"
@@ -459,7 +385,10 @@
                 android:layout_width="35dp"
                 android:text="0"
                 android:textSize="14sp"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"/>
 
             <EditText
                 android:inputType="numberSigned"
@@ -470,7 +399,10 @@
                 android:layout_width="35dp"
                 android:text="0"
                 android:textSize="14sp"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"/>
 
             <EditText
                 android:inputType="numberSigned"
@@ -481,7 +413,10 @@
                 android:layout_width="35dp"
                 android:text="0"
                 android:textSize="14sp"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"/>
 
             <EditText
                 android:inputType="numberSigned"
@@ -492,7 +427,10 @@
                 android:layout_width="35dp"
                 android:text="0"
                 android:textSize="14sp"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"/>
 
             <EditText
                 android:inputType="numberSigned"
@@ -503,7 +441,10 @@
                 android:layout_width="35dp"
                 android:text="0"
                 android:textSize="14sp"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"/>
 
             <EditText
                 android:inputType="numberSigned"
@@ -514,8 +455,176 @@
                 android:layout_width="35dp"
                 android:text="0"
                 android:textSize="14sp"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"/>
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Misc"
+        android:layout_below="@+id/Info"
+        android:layout_toLeftOf="@+id/linhaNivel"
+        android:layout_toStartOf="@+id/linhaNivel"
+        android:layout_marginTop="22dp"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:text="Dano"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tagDano"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif"
+
+            android:textStyle="bold"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editDano"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:text="0"
+
+            android:textStyle="bold"
+            android:background="@drawable/value_box"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:text="Armadura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tagArmadura"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif"
+
+            android:textStyle="bold"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editArm"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:text="0"
+
+            android:textStyle="bold"
+            android:background="@drawable/value_box"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="Atual"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tagAtual"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"
+
+                android:textStyle="bold"/>
+
+            <TextView
+                android:text="Total"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tagTotal"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"
+
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="PV"
+                android:layout_height="wrap_content"
+                android:id="@+id/tagPV"
+                android:layout_weight="1"
+                android:layout_width="25dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"
+
+                android:textStyle="bold"/>
+
+            <EditText
+                android:layout_width="35dp"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/editPvAtual"
+                android:layout_weight="1"
+                android:layout_height="35dp"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:text="0"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"
+
+                android:layout_marginRight="4dp"/>
+
+            <EditText
+                android:layout_width="35dp"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/editPvTotal"
+                android:layout_weight="1"
+                android:layout_height="35dp"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:text="0"
+
+                android:textStyle="bold"
+                android:background="@drawable/value_box"
+                android:layout_marginBottom="10dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:text="Carga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tagCarga"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif"
+
+            android:textStyle="bold"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editCarga"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:text="0"
+
+            android:textStyle="bold"
+            android:background="@drawable/value_box"/>
 
     </LinearLayout>
 
