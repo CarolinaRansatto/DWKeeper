@@ -23,7 +23,8 @@
         android:id="@+id/floatingActionButton"
         app:backgroundTint="@android:color/holo_blue_light"
         app:rippleColor="@android:color/holo_blue_bright"
-        android:tint="@android:color/background_light" />
+        android:tint="@android:color/background_light"
+        android:onClick="addItems"/>
 
      <TextView
         android:text="Fichas Disponíveis"
@@ -42,6 +43,6 @@
         android:layout_below="@+id/tagFichasDisp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/lovelyViewGroup" />
+        android:id="@id/listViewGroup" />
 
 </RelativeLayout>

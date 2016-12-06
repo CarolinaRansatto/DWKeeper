@@ -628,4 +628,14 @@
 
     </LinearLayout>
 
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linhaNome"
+        android:layout_alignRight="@+id/linhaNome"
+        android:layout_alignEnd="@+id/linhaNome"
+        android:id="@+id/button2"
+        android:onClick="gotoSelecao" />
+
 </RelativeLayout>

@@ -159,6 +159,11 @@ public class NovaFicha extends AppCompatActivity
        // Log.d("imagem", "Path on save/load at onPause: " + aux.getImagePath());
     }
 
+    public void gotoSelecao(View view) {
+        Intent intent = new Intent(this, SelecaoFicha.class);
+        startActivity(intent);
+    }
+
     public void pickImage(View v){
         Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
         getIntent.setType("image/*");
