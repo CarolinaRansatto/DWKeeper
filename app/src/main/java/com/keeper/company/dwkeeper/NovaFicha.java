@@ -7,7 +7,9 @@ import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -56,6 +58,7 @@ public class NovaFicha extends AppCompatActivity
     private FichaStats fichaStats;
     private FichaDetalhes fichaDetalhes;
     private FichaTech fichaTech;
+    private ShareActionProvider mShareActionProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,6 +199,10 @@ public class NovaFicha extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_nova_ficha, menu);
+
+        MenuItem item = menu.findItem(R.id.menu_share);
+
+        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
         return true;
     }
 
@@ -206,10 +213,15 @@ public class NovaFicha extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.menu_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Testando");
+            sendIntent.setType("text/plain");
+            startActivity(Intent.createChooser(sendIntent, "Enviar para"));
         }
+
+        //noinspection SimplifiableIfStatement
 
         return super.onOptionsItemSelected(item);
     }

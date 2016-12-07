@@ -33,7 +33,26 @@
                 android:id="@+id/editAparencia"
                 android:layout_height="80dp" />
         </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight=".5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
 
+            <TextView
+                android:text="Raça"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tagRaça"
+                android:textSize="20sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/editRacaText"
+                android:layout_height="80dp" />
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
