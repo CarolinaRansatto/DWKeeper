@@ -23,8 +23,7 @@ tools:context="com.keeper.company.dwkeeper.SelecaoFicha">
     android:id="@+id/floatingActionButton"
     app:backgroundTint="@android:color/holo_blue_light"
     app:rippleColor="@android:color/holo_blue_bright"
-    android:tint="@android:color/background_light"
-    android:onClick="addItems"/>
+    android:tint="@android:color/background_light" />
 
 <TextView
     android:text="Fichas Disponíveis"

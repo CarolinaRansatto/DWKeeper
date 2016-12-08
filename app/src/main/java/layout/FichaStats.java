@@ -257,6 +257,14 @@ public class FichaStats extends Fragment {
         mListener = null;
     }
 
+//    public void onClickShare(View v) {
+//        Intent sendIntent = new Intent();
+//        sendIntent.setAction(Intent.ACTION_SEND);
+//        sendIntent.putExtra(Intent.EXTRA_TEXT, "Testando");
+//        sendIntent.setType("text/plain");
+//        startActivity(Intent.createChooser(sendIntent, "Enviar para"));
+//    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
