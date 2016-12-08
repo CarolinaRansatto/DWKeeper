@@ -21,9 +21,13 @@
             android:textSize="20sp"
             android:fontFamily="sans-serif" />
 
-        <ListView
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editMovimentos" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -40,9 +44,13 @@
             android:textSize="20sp"
             android:fontFamily="sans-serif" />
 
-        <ListView
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editEquipamento" />
+
     </LinearLayout>
 
 </LinearLayout>

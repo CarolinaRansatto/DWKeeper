@@ -56,6 +56,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_15_6 = "APARENCIA";
     public static final String COL_16_6 = "BACKGROUND";
     public static final String COL_17_6 = "VINCULOS";
+    public static final String COL_18_6 = "EQUIPAMENTOS";
+    public static final String COL_19_6 = "MOVIMENTOS";
+    public static final String COL_20_6 = "RACA_TEXT";
     public static final String COL_1_7 = "CLASSE_FK";
     public static final String COL_2_7 = "RAÇA_FK";
     public static final String COL_3_7 = "BENEFICIO";
@@ -109,7 +112,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COL_14_6 + " VARCHAR(255), " + // IMG_PATH
             COL_15_6 + " VARCHAR(255), " + // APARENCIA
             COL_16_6 + " VARCHAR(255), " +// BACKGROUND
-            COL_17_6 + " VARCHAR(255)); ";  // VINCULOS
+            COL_17_6 + " VARCHAR(255), " + // VINCULOS
+            COL_18_6 + " VARCHAR(255), " + // Equipamentos
+            COL_19_6 + " VARCHAR(255), " +// Movimentos
+            COL_20_6 + " VARCHAR(255)); "; // Movimentos da Raça
+
 
 
     // pode_ser_de
@@ -150,6 +157,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+
+
     public FichaHelper loadFicha(int id){
         SQLiteDatabase bd = this.getWritableDatabase();
 
@@ -159,7 +168,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursorFicha = bd.rawQuery("select * FROM " + TABLE_NAME_6 + " WHERE " + COL_1_6 + " = " + id + " ;", null);
 
         if (cursorFicha.getCount() == 0){
-            insertInitialDataFicha();
+            insertInitialDataFicha(id);
             cursorFicha = bd.rawQuery("select * FROM " + TABLE_NAME_6 + " WHERE " + COL_1_6 + " = " + id + " ;", null);
         }
 
@@ -169,6 +178,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         cursorFicha.moveToNext();
         // destrincha os atributos
+        Log.d("teste", "Tamanho do cursor = " + cursorFicha.getCount() + " com id = " + id);
         String [] auxArrayAtr = cursorFicha.getString(3).split("/"); // Quebra a string dos atributos nas barras para separar os atributos
         int [] arrayAtr = new int [12];
 
@@ -226,6 +236,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Seta vinculos
         ficha.setVinculos(cursorFicha.getString(16));
 
+        // Seta equips
+        ficha.setEquipamentos(cursorFicha.getString(17));
+
+        // Seta movs
+        ficha.setMovimentos(cursorFicha.getString(18));
+
+        // Seta raça text
+        ficha.setRaçaText(cursorFicha.getString(19));
+
+
         return ficha;
     }
     
@@ -249,6 +269,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COL_15_6, ficha.getAparencia());  // APARENCIA
         cv.put(COL_16_6, ficha.getBackground());  // BACKGROUND
         cv.put(COL_17_6, ficha.getVinculos());  // VINCULOS
+        cv.put(COL_2_6, ficha.getClasse());  // Classe
+        cv.put(COL_3_6, ficha.getRaça());  // RAÇA
+        cv.put(COL_18_6, ficha.getEquipamentos());  // EQUIPS
+        cv.put(COL_19_6, ficha.getMovimentos());  // MOVS
+        cv.put(COL_20_6, ficha.getRaçaText());  // RAÇA_TEXT
 
         // não existia uma ficha previamente, então vamos criar uma
         if (ficha.getId() == 0){
@@ -260,16 +285,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertInitialDataFicha(){
+    public void insertInitialDataFicha(int id){
         SQLiteDatabase db = this.getWritableDatabase ();
         ContentValues contentValues = new ContentValues();
 
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_6);
-        db.execSQL( QUERY_6 );
+        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_6);
+        // db.execSQL( QUERY_6 );
 
         // Todos os dados necessários
 
-        //contentValues.put(COL_1_6, 1);  // ID -> não é necessário com autoincrement
+        contentValues.put(COL_1_6, id);  // ID -> não é necessário com autoincrement
+        contentValues.put(COL_2_6, " ");  // Classe
+        contentValues.put(COL_3_6, " ");  // Raça
         contentValues.put(COL_5_6, "Nome");  // NOME
         contentValues.put(COL_4_6, "0/0/0/0/0/0/0/0/0/0/0/0");  // ATRIBUTOS
         contentValues.put(COL_6_6, 0);  // EXP
@@ -283,6 +310,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_15_6, " ");  // APARENCIA
         contentValues.put(COL_16_6, " ");  // background
         contentValues.put(COL_17_6, " ");  // vinculos
+        contentValues.put(COL_18_6, " ");  // equips
+        contentValues.put(COL_19_6, " ");  // movs
+        contentValues.put(COL_20_6, " ");  // raça_text
 
         db.insert(TABLE_NAME_6, null, contentValues);
 
@@ -357,5 +387,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public void removeFicha(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME_6 + " WHERE " + COL_1_6 + " = " + id);
+    }
 
 }

@@ -4,10 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import com.keeper.company.dwkeeper.DatabaseHelper;
+import com.keeper.company.dwkeeper.FichaHelper;
 import com.keeper.company.dwkeeper.R;
 
 /**
@@ -20,7 +24,13 @@ import com.keeper.company.dwkeeper.R;
  */
 public class FichaTech extends Fragment {
 
+    public EditText editMovimentos;
+    public EditText editEquipamentos;
+
     private OnFragmentInteractionListener mListener;
+
+    DatabaseHelper bd;
+    public FichaHelper ficha;
     private int id;
 
     public FichaTech() {
@@ -99,5 +109,22 @@ public class FichaTech extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+
+    @Override
+    public void onViewCreated(View v, Bundle b){
+
+        Log.d("teste", "estáa chegando aqui");
+
+        bd = new DatabaseHelper(this.getContext());
+        ficha = bd.loadFicha(id);
+
+        editMovimentos = (EditText) getActivity().findViewById(R.id.editMovimentos);
+        editEquipamentos = (EditText) getActivity().findViewById(R.id.editEquipamento);
+
+        editMovimentos.setText("" + ficha.getMovimentos());
+        editEquipamentos.setText("" + ficha.getEquipamentos());
+
     }
 }

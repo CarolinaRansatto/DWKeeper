@@ -60,11 +60,16 @@ public class ListaFichas extends BaseAdapter {
         itemHolder.viewNome.setText(item.nome);
         itemHolder.viewClasse.setText(item.classe);
         itemHolder.viewNivel.setText("Nível " + item.nivel);
-        itemHolder.viewImagem.setImageURI(Uri.parse(item.img));
+        if (item.img != null){
+            itemHolder.viewImagem.setImageURI(Uri.parse(item.img));
+        }
+
 
         //retorna a view com as informações
         return view;
     }
+
+
 
     private class ItemSuporte {
         ImageView viewImagem;

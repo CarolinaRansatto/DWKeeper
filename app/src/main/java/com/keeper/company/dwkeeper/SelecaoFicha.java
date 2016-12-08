@@ -46,6 +46,10 @@ public class SelecaoFicha extends AppCompatActivity {
         super.onStart();
     }
 
+    public void removeFicha(){
+
+    }
+
     public void onAdd(View v) {
         Intent intent = new Intent(SelecaoFicha.this, Ficha.class);
         if (itens.size() > 0) intent.putExtra("ID", itens.get(itens.size() - 1).id + 1);
@@ -53,7 +57,7 @@ public class SelecaoFicha extends AppCompatActivity {
         startActivity(intent);
     }
 
-    List<FichaView> pegarFichas() {
+    private List<FichaView> pegarFichas() {
         List<FichaView> itens = new LinkedList<>();
         DatabaseHelper bd = new DatabaseHelper(this);
         Cursor c = bd.viewFichas();
@@ -64,6 +68,7 @@ public class SelecaoFicha extends AppCompatActivity {
                     Integer.parseInt(c.getString(0)),
                     c.getString(4), c.getString(1),
                     c.getString(6), c.getString(13)));
+            c.moveToNext();
         }
 
         return itens;

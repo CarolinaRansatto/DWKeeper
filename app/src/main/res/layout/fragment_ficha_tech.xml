@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="layout.FichaTech">
+    tools:context="layout.FichaTech"
+    android:weightSum="1">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -15,9 +16,13 @@
         android:textSize="20sp"
         android:fontFamily="sans-serif" />
 
-    <ListView
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editMovimentos"
+        android:layout_weight="0.19" />
 
     <TextView
         android:text="Equipamento"
@@ -27,8 +32,21 @@
         android:textSize="20sp"
         android:fontFamily="sans-serif" />
 
-    <ListView
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editEquipamento"
+        android:layout_weight="0.22" />
+
+    <Button
+        android:text="Deletar Ficha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button5"
+        android:layout_gravity="bottom"
+        style="@style/Widget.AppCompat.Button"
+        android:onClick="removeFicha" />
 
 </LinearLayout>

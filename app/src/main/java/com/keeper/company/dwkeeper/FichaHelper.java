@@ -32,10 +32,37 @@ public class FichaHelper {
     private String background;
     private String aparencia;
     private String vinculos;
+    private String movimentos;
+    private String equipamentos;
+    private String raçaText;
 
 
     public FichaHelper(){
 
+    }
+
+    public String getRaçaText() {
+        return raçaText;
+    }
+
+    public void setRaçaText(String raça_text) {
+        this.raçaText = raça_text;
+    }
+
+    public String getEquipamentos() {
+        return equipamentos;
+    }
+
+    public void setEquipamentos(String equipamentos) {
+        this.equipamentos = equipamentos;
+    }
+
+    public String getMovimentos() {
+        return movimentos;
+    }
+
+    public void setMovimentos(String movimentos) {
+        this.movimentos = movimentos;
     }
 
     public String getVinculos() {

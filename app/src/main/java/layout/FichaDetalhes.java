@@ -82,7 +82,7 @@ public class FichaDetalhes extends Fragment {
         editAparencia.setText("" + ficha.getAparencia());
         editBackground.setText("" + ficha.getBackground());
         editVinculos.setText("" + ficha.getVinculos());
-        editRacaText.setText("" + ficha.getRaça()); // TODO: criar att pra racatext
+        editRacaText.setText("" + ficha.getRaçaText());
 
     }
 

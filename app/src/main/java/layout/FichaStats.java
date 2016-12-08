@@ -36,7 +36,7 @@ public class FichaStats extends Fragment {
     public EditText editNivel;
     public EditText editDano;
     public EditText editArmadura;
-    public EditText  editPvTotal;
+    public EditText editPvTotal;
     public EditText editPvAtual;
     public EditText editCarga;
     public EditText editModFor;
@@ -59,7 +59,7 @@ public class FichaStats extends Fragment {
 
     DatabaseHelper bd;
     public FichaHelper ficha;
-    private int id;
+    public int id;
 
     /// / TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -115,7 +115,6 @@ public class FichaStats extends Fragment {
     public void onViewCreated(View v, Bundle b) {
         bd = new DatabaseHelper(this.getContext());
         ficha = bd.loadFicha(id);
-
         img = (ImageView) getView().findViewById(R.id.viewImagem);
         editExp = (EditText) getView().findViewById(R.id.editExp);
         editNivel = (EditText) getView().findViewById(R.id.editNivel);

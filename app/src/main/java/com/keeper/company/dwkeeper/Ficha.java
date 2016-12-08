@@ -83,22 +83,25 @@ public class Ficha extends AppCompatActivity
     @Override
     public void onPause(){
         //salva ficha
-
         super.onPause();
-        saveFicha();
-        ImageView img = fichaStats.img;
-        FichaHelper aux = bd.loadFicha(id); // não tá chegando
-        if (aux.getImagePath() != null) {
-            img.setImageURI(Uri.parse(aux.getImagePath()));
+        if(id != 0){
+            saveFicha();
+            FichaHelper aux = bd.loadFicha(id);
         }
 
-       // Log.d("imagem", "Path on save/load at onPause: " + aux.getImagePath());
+        //ImageView img = fichaStats.img;
+
+        //if (aux.getImagePath() != null) {
+        //    img.setImageURI(Uri.parse(aux.getImagePath()));
+        //}
+
+
     }
 
     @Override
     public void onBackPressed() {
-        saveFicha();
-        super.onBackPressed();
+        Intent intent = new Intent(this, SelecaoFicha.class);
+        startActivity(intent);
     }
 
     private void saveFicha() {
@@ -136,6 +139,17 @@ public class Ficha extends AppCompatActivity
         EditText editVinculos = fichaDetalhes.editVinculos;
         EditText editAlinhamento = fichaDetalhes.editAlinhamento;
         EditText editRacaText = fichaDetalhes.editRacaText;
+        EditText editMovimentos;
+        EditText editEquipamentos;
+
+
+        // Ficha tech talvez não tenha sido inicializada
+        if (fichaTech != null){
+             editMovimentos = fichaTech.editMovimentos;
+             editEquipamentos = fichaTech.editEquipamentos;
+            ficha.setMovimentos(editMovimentos.getText().toString());
+            ficha.setEquipamentos(editEquipamentos.getText().toString());
+        }
 
         // Monta string de atributos pra salvar no BD
 
@@ -167,7 +181,8 @@ public class Ficha extends AppCompatActivity
         ficha.setAtributos(newAtributos);
         ficha.setClasse(classe.getText().toString());
         ficha.setRaça(raca.getText().toString());
-        //ficha.setRacaText(editRacaText.getText().toString());
+        ficha.setRaçaText(editRacaText.getText().toString());
+
 
         if (img.getTag() != null){
             ficha.setImagePath(img.getTag().toString());
@@ -178,7 +193,11 @@ public class Ficha extends AppCompatActivity
         bd.saveFicha(ficha, ficha.getId());
     }
 
-    public void gotoSelecao(View view) {
+    public void removeFicha(View view) {
+        bd = new DatabaseHelper(this);
+        bd.removeFicha(id);
+        id = 0;
+        fichaStats.id = 0;
         Intent intent = new Intent(this, SelecaoFicha.class);
         startActivity(intent);
     }
@@ -215,10 +234,6 @@ public class Ficha extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_nova_ficha, menu);
-
-        MenuItem item = menu.findItem(R.id.menu_share);
-
-        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
         return true;
     }
 
@@ -228,14 +243,6 @@ public class Ficha extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        if (id == R.id.menu_share) {
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Testando");
-            sendIntent.setType("text/plain");
-            startActivity(Intent.createChooser(sendIntent, "Enviar para"));
-        }
 
         //noinspection SimplifiableIfStatement
 

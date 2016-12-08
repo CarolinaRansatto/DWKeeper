@@ -2,10 +2,4 @@
     xmlns:bwq="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.keeper.company.dwkeeper.Ficha">
-    <item
-        android:id="@+id/menu_share"
-        android:title="Share"
-        bwq:actionProviderClass="android.support.v7.widget.ShareActionProvider"
-        bwq:showAsAction="always"/>
-</menu>
+    tools:context="com.keeper.company.dwkeeper.Ficha"></menu>
