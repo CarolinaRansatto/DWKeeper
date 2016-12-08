@@ -15,6 +15,7 @@ import java.util.List;
 public class SelecaoFicha extends AppCompatActivity {
 
     List<FichaView> itens;
+    ListaFichas adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class SelecaoFicha extends AppCompatActivity {
         itens = pegarFichas();
         ListView listaDeFichas = (ListView) findViewById(R.id.listViewGroup);
 
-        final ListaFichas adapter = new ListaFichas(itens, this);
+        adapter = new ListaFichas(itens, this);
         listaDeFichas.setAdapter(adapter);
 
         listaDeFichas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -38,9 +39,17 @@ public class SelecaoFicha extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        itens = pegarFichas();
+        adapter.notifyDataSetChanged();
+        super.onStart();
+    }
+
     public void onAdd(View v) {
         Intent intent = new Intent(SelecaoFicha.this, Ficha.class);
-        intent.putExtra("ID", itens.size() + 1);
+        if (itens.size() > 0) intent.putExtra("ID", itens.get(itens.size() - 1).id + 1);
+        else intent.putExtra("ID", 1);
         startActivity(intent);
     }
 

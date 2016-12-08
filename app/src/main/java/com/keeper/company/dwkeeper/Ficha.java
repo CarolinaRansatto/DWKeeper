@@ -77,7 +77,7 @@ public class Ficha extends AppCompatActivity
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         Intent intent = getIntent();
-        id = intent.getIntExtra("ID", 0);
+        id = intent.getIntExtra("ID", 1);
     }
 
     @Override

@@ -230,13 +230,7 @@ public class FichaStats extends Fragment {
         editModCon.setText("" + ficha.getAtributo("con")[1]);
         editModSab.setText("" + ficha.getAtributo("sab")[1]);
         editModInt.setText("" + ficha.getAtributo("int")[1]);
-
-
-
     }
-
-
-
 
 
 
