@@ -59,6 +59,7 @@ public class Ficha extends AppCompatActivity
     private FichaDetalhes fichaDetalhes;
     private FichaTech fichaTech;
     private ShareActionProvider mShareActionProvider;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,9 @@ public class Ficha extends AppCompatActivity
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        Intent intent = getIntent();
+        id = intent.getIntExtra("ID", 0);
     }
 
     @Override
@@ -81,13 +85,24 @@ public class Ficha extends AppCompatActivity
         //salva ficha
 
         super.onPause();
-        bd = new DatabaseHelper(this);
-
-        if (fichaStats != null){
-            Log.d("textTest", "fichaStatsnotnull");
-        }else {
-            Log.d("textTest", "fichaStatsnulll"); // fichas stats esta setndo null
+        saveFicha();
+        ImageView img = fichaStats.img;
+        FichaHelper aux = bd.loadFicha(id); // não tá chegando
+        if (aux.getImagePath() != null) {
+            img.setImageURI(Uri.parse(aux.getImagePath()));
         }
+
+       // Log.d("imagem", "Path on save/load at onPause: " + aux.getImagePath());
+    }
+
+    @Override
+    public void onBackPressed() {
+        saveFicha();
+        super.onBackPressed();
+    }
+
+    private void saveFicha() {
+        bd = new DatabaseHelper(this);
         FichaHelper ficha = fichaStats.ficha;
 
         EditText exp = fichaStats.editExp;
@@ -98,6 +113,8 @@ public class Ficha extends AppCompatActivity
         EditText pvTotal = fichaStats.editPvTotal;
         EditText pvAtual = fichaStats.editPvAtual;
         EditText carga = fichaStats.editCarga;
+        EditText raca = fichaStats.editRaca;
+        EditText classe = fichaStats.editClasse;
 
         EditText editModFor = fichaStats.editModFor;
         EditText editFor =  fichaStats.editFor;
@@ -118,10 +135,12 @@ public class Ficha extends AppCompatActivity
         EditText editBackground = fichaDetalhes.editBackground;
         EditText editVinculos = fichaDetalhes.editVinculos;
         EditText editAlinhamento = fichaDetalhes.editAlinhamento;
+        EditText editRacaText = fichaDetalhes.editRacaText;
 
         // Monta string de atributos pra salvar no BD
 
-        EditText [] editArray = {editFor, editModFor,
+        EditText [] editArray = {
+                editFor, editModFor,
                 editDes, editModDes,
                 editCon, editModCon,
                 editInt, editModInt,
@@ -146,20 +165,17 @@ public class Ficha extends AppCompatActivity
         ficha.setPv_total(Integer.parseInt(pvTotal.getText().toString()));
         ficha.setCarga(Integer.parseInt(carga.getText().toString()));
         ficha.setAtributos(newAtributos);
+        ficha.setClasse(classe.getText().toString());
+        ficha.setRaça(raca.getText().toString());
+        //ficha.setRacaText(editRacaText.getText().toString());
 
         if (img.getTag() != null){
             ficha.setImagePath(img.getTag().toString());
-         //   Log.d("imagem", "Path on save: " + img.getTag().toString());
+            //   Log.d("imagem", "Path on save: " + img.getTag().toString());
 
         }
 
         bd.saveFicha(ficha, ficha.getId());
-        FichaHelper aux = bd.loadFicha(1); // não tá chegando
-        if (aux.getImagePath() != null) {
-            img.setImageURI(Uri.parse(aux.getImagePath()));
-        }
-
-       // Log.d("imagem", "Path on save/load at onPause: " + aux.getImagePath());
     }
 
     public void gotoSelecao(View view) {
@@ -253,14 +269,24 @@ public class Ficha extends AppCompatActivity
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+            Fragment f;
             switch (position) {
+                case 0:
+                    f = FichaStats.newInstance();
+                    break;
                 case 1:
-                    return FichaDetalhes.newInstance();
+                    f = FichaDetalhes.newInstance();
+                    break;
                 case 2:
-                    return FichaTech.newInstance();
+                    f = FichaTech.newInstance();
+                    break;
                 default:
-                    return FichaStats.newInstance();
+                    return null;
             }
+            Bundle b = new Bundle();
+            b.putInt("ID", id);
+            f.setArguments(b);
+            return f;
         }
 
         @Override

@@ -27,15 +27,11 @@ public class FichaDetalhes extends Fragment {
     public EditText editAparencia;
     public EditText editBackground;
     public EditText editVinculos;
+    public EditText editRacaText;
 
     DatabaseHelper bd;
     public FichaHelper ficha;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-    // TODO: Rename and change types of parameters
-
+    private int id;
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,6 +62,7 @@ public class FichaDetalhes extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        this.id = getArguments().getInt("ID");
         return inflater.inflate(R.layout.fragment_ficha_detalhes, container, false);
     }
 
@@ -73,17 +70,19 @@ public class FichaDetalhes extends Fragment {
     public void onViewCreated(View v, Bundle b){
 
         bd = new DatabaseHelper(this.getContext());
-        ficha = bd.loadFicha(1);
+        ficha = bd.loadFicha(id);
 
         editAparencia = (EditText) getActivity().findViewById(R.id.editAparencia);
         editBackground = (EditText) getActivity().findViewById(R.id.editBackground);
         editVinculos = (EditText) getActivity().findViewById(R.id.editVinculos);
         editAlinhamento = (EditText) getActivity().findViewById(R.id.editAlinhamento);
+        editRacaText = (EditText) getActivity().findViewById(R.id.editRacaText);
 
         editAlinhamento.setText("" + ficha.getAlinhamento());
         editAparencia.setText("" + ficha.getAparencia());
         editBackground.setText("" + ficha.getBackground());
         editVinculos.setText("" + ficha.getVinculos());
+        editRacaText.setText("" + ficha.getRaça()); // TODO: criar att pra racatext
 
     }
 

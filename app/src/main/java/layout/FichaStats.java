@@ -51,12 +51,15 @@ public class FichaStats extends Fragment {
     public EditText editSab;
     public EditText editModCar;
     public EditText editCar;
+    public EditText editRaca;
+    public EditText editClasse;
 
 
     public ImageView img;
 
     DatabaseHelper bd;
     public FichaHelper ficha;
+    private int id;
 
     /// / TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -104,19 +107,21 @@ public class FichaStats extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        this.id = getArguments().getInt("ID");
         return inflater.inflate(R.layout.fragment_ficha_stats, container, false);
     }
 
     @Override
     public void onViewCreated(View v, Bundle b) {
-
         bd = new DatabaseHelper(this.getContext());
-        ficha = bd.loadFicha(1);
+        ficha = bd.loadFicha(id);
 
         img = (ImageView) getView().findViewById(R.id.viewImagem);
         editExp = (EditText) getView().findViewById(R.id.editExp);
         editNivel = (EditText) getView().findViewById(R.id.editNivel);
         editNome = (EditText) getView().findViewById(R.id.editNome);
+        editClasse = (EditText) getView().findViewById(R.id.editClasse);
+        editRaca = (EditText) getView().findViewById(R.id.editRaca);
         editDano = (EditText) getView().findViewById(R.id.editDano);
         editArmadura = (EditText) getView().findViewById(R.id.editArm);
         editPvAtual = (EditText) getView().findViewById(R.id.editPvAtual);
@@ -209,6 +214,8 @@ public class FichaStats extends Fragment {
         editPvAtual.setText("" + ficha.getPv_atual());
         editPvTotal.setText("" + ficha.getPv_total());
         editCarga.setText("" + ficha.getCarga());
+        editClasse.setText("" + ficha.getClasse());
+        editRaca.setText("" + ficha.getRaça());
 
         editFor.setText("" + ficha.getAtributo("for")[0]);
         editDes.setText("" + ficha.getAtributo("des")[0]);
